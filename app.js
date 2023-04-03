@@ -49,7 +49,9 @@ function task1(callback) {
             answer.html(`You get yourself out using the knife.`);
             $(".playerAction").val("");
             task1Completed = true;
-            callback();
+            setTimeout(function(){
+                callback();
+            },2000)
         }
         else if (playerAnswer.includes("hands")) {
             answer.html(`You need to use some sort of tool!`)
@@ -70,30 +72,32 @@ function task1(callback) {
             answer.html(`You're unsure about which way to go. Try some directions.`)
             $(".playerAction").val("")
         }
-        else if (playerAnswer == "go north") {
+        else if (playerAnswer.includes("north")) {
             answer.html(`You went north.You don't feel this is the right way.`)
             $(".playerAction").val("")
         }
-        else if (playerAnswer == "go west") {
+        else if (playerAnswer.includes("west")) {
             answer.html(`You went west.You see a bunch of shadows near a light source.`)
             $(".playerAction").val("")
             subTask1completed = true
         
         }
-        else if (subTask1completed = true && playerAnswer == "check it out") {
+        else if (subTask1completed = true && playerAnswer.includes("check") || playerAnswer.includes("go")) {
             answer.html(`You approach the light source.`)
             task1Completed = true;
-            callback();    
+            setTimeout(function(){
+                callback();
+            },2000)    
         }
-        else if (playerAnswer =="go back") {
+        else if (playerAnswer.includes("back") || playerAnswer.includes("return")) {
             answer.html(`You went back to where you came from.`)
         }
         
-        else if (playerAnswer == "go east") {
+        else if (playerAnswer.includes("east")) {
             answer.html(`You went east.You came to a dead end. There's no way to proceed further.`)
             $(".playerAction").val("")
         }
-        else if (playerAnswer == "go south") {
+        else if (playerAnswer.includes("south")) {
             answer.html(`You went south. You hear the distant sound of a water source. This might be good.`)
             $(".playerAction").val("")
         }
@@ -126,7 +130,9 @@ function task1(callback) {
         else if (findWood = true && playerAnswer == "find stones") {
                     answer.html(`You combine stones and wood to make a campfire. You're now feeling warm.`)    
                     task1Completed = true;
-                    callback();
+                    setTimeout(function(){
+                        callback();
+                    },3000)
         }
         else {
             answer.html(`I don't understand that, try something else.`)
@@ -149,19 +155,22 @@ function task1(callback) {
                 answer.html(`You gather some wood. Some stones would go together with this to make a campfire.`)
                 $(".playerAction").val("")
                 findWood = true
-                
         }
         else if (findWood = true && playerAnswer == "find stones") {
                     answer.html(`You combine stones and wood to make a campfire. You're now dry.`)    
                     task1Completed = true;
-                    callback();
+                    setTimeout(function(){
+                        callback();
+                    },3000)
         }
         
         else if (playerAnswer == "wait") {
             answer.html(`You wait until you are dry.`);
             $(".playerAction").val("");
             task1Completed = true;
-            callback();
+            setTimeout(function(){
+                callback();
+            },2000)
         }    
         
         else {
@@ -179,7 +188,9 @@ function task1(callback) {
             answer.html(`You meditate until your fear dissipates.`);
             $(".playerAction").val("");
             task1Completed = true;
-            callback();
+            setTimeout(function(){
+                callback();
+            },2000)
         }
         else if (playerAnswer == "yell") {
             answer.html(`You yell out your lungs of fear. Nothing happens. `)
@@ -233,58 +244,17 @@ function combat() {
         if (playerAnswer == "sword"){
             answer.html(`Your strike the ${enemy} down with your sword!.`)
             $(".playerAction").val("")   
-        }  
-        else if (playerAnswer=="hands"){
-            answer.html(`Your fisticuffs is not effective on ${enemy}.`)
-            $(".playerAction").val("")
-        }
-        else {
-            answer.html(`I don't understand that, try something else.`)
         }
     }
-    else if (gamestate = "CombatInit" && playerAnswer=="sword") {
-        $(".playerAction").val("") 
-            if (playerAnswer == "sword"){
-            answer.html(`Your strike the ${enemy} down with your sword!.`)
-            $(".playerAction").val("")   
-            }  
+    else if (gamestate = "CombatInit" && playerAnswer=="hands") {
+        $(".playerAction").val("")  
             if (playerAnswer=="hands"){
                 answer.html(`Your fisticuffs is not effective on ${enemy}.`)
                 $(".playerAction").val("")
             }
-            else {
-                answer.html(`I don't understand that, try something else.`)
-            }
-        } 
-        
-    else if (gamestate = "CombatInit" && playerAnswer=="sword") {
-        $(".playerAction").val("") 
-            if (playerAnswer == "sword"){
-            answer.html(`Your strike the ${enemy} down with your sword!.`)
-            $(".playerAction").val("")   
-            }  
-            if (playerAnswer=="hands"){
-                answer.html(`Your fisticuffs is not effective on ${enemy}.`)
-                $(".playerAction").val("")
-            }
-            else {
-                answer.html(`I don't understand that, try something else.`)
-            } 
-        } 
-        
-    else if (gamestate = "CombatInit" && playerAnswer=="sword") {
-        $(".playerAction").val("") 
-            if (playerAnswer == "sword"){
-            answer.html(`Your strike the ${enemy} down with your sword!.`)
-            $(".playerAction").val("")   
-            }   
-            if (playerAnswer=="hands"){
-                answer.html(`Your fisticuffs is not effective on ${enemy}.`)
-                $(".playerAction").val("")
-            }
-            else {
-                answer.html(`I don't understand that, try something else.`)
-            }
-        } 
+        }
+    else {
+        answer.html(`I don't understand that, try something else.`)
+    }
 }
 
