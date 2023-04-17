@@ -18,6 +18,8 @@ let situation = situations[randomSituationIndex]
 const diceRoll = Math.round(Math.random() * 20);
 console.log(diceRoll);
 
+//!Game Over Status
+let gameOverCounter = 0;
 
 $(document).ready(function () {
     $(".currentLocation").html(`You are in a ${randomLocation}`);
@@ -43,6 +45,8 @@ let answer = $(".actionResult").html("");
 
 function task1(callback) {
     console.log("task 1 running");
+    const diceRoll = Math.round(Math.random() * 20);
+    console.log(`You rolled ${diceRoll}.`);
     let playerAnswer = $(".playerAction").val();
     if (situation == "Stuck") {
         if (playerAnswer.includes("knife")) {
@@ -205,6 +209,8 @@ function task1(callback) {
 
 
 function task2(playerAnswer) {
+    const diceRoll = Math.round(Math.random() * 20);
+    console.log(`You rolled ${diceRoll}.`);
     console.log("task 2 running");
     $(".playerAction").val("")
     HowsItGoing.html(`You are no longer ${situation}.`)
@@ -237,13 +243,20 @@ $(".playerDecision").click(function (e) {
 
 
 function combat() {
+    const diceRoll = Math.round(Math.random() * 20);
+    console.log(`You rolled ${diceRoll}.`);
     let playerAnswer = $(".playerAction").val();
     console.log("combat running");
     if (gamestate = "CombatInit" && playerAnswer=="sword") {
         $(".playerAction").val("") 
-        if (playerAnswer == "sword"){
+        if (diceRoll > 10){
             answer.html(`Your strike the ${enemy} down with your sword!.`)
             $(".playerAction").val("")   
+        }
+        else {
+            answer.html(`You miss your attack the sword, ${enemy} still lives!`)
+            $(".playerAction").val("");
+            CheckGameOver("miss")
         }
     }
     else if (gamestate = "CombatInit" && playerAnswer=="hands") {
@@ -258,3 +271,17 @@ function combat() {
     }
 }
 
+function CheckGameOver(stringToCheck) {
+    if (answer.text().includes(stringToCheck)) {
+        gameOverCounter++;
+        if (gameOverCounter >= 2) {
+            gameOver();
+        }
+    }
+}
+
+function gameOver() {
+    answer.html(`${enemy} has bested you and you have died. Try Again.`)
+    $(".playerAction").val("");
+    gameOverCounter = 0;
+}
