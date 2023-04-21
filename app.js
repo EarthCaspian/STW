@@ -21,6 +21,9 @@ console.log(diceRoll);
 //!Game Over Status
 let gameOverCounter = 0;
 
+let mainTextbox = document.querySelector(".mainTextbox");
+mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/${randomLocation}.png')`;
+
 $(document).ready(function () {
     $(".currentLocation").html(`You are in a ${randomLocation}`);
     $(".currentSituation").html(`You are ${situation}!`)
