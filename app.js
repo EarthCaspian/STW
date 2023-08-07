@@ -21,6 +21,7 @@ console.log(diceRoll);
 //!Game Over Status
 let gameOverCounter = 0;
 
+//!Random Area Image Change
 let mainTextbox = document.querySelector(".mainTextbox");
 mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/${randomLocation}.png')`;
 
@@ -50,15 +51,20 @@ function task1(callback) {
     console.log("task 1 running");
     const diceRoll = Math.round(Math.random() * 20);
     console.log(`You rolled ${diceRoll}.`);
+    $(".diceRoll").html(`You roll ${diceRoll}`);
     let playerAnswer = $(".playerAction").val();
     if (situation == "Stuck") {
-        if (playerAnswer.includes("knife")) {
+        if (playerAnswer.includes("knife") && diceRoll >= 10) {
             answer.html(`You get yourself out using the knife.`);
             $(".playerAction").val("");
             task1Completed = true;
             setTimeout(function(){
                 callback();
             },2000)
+        }
+        else if (playerAnswer.includes("knife") && diceRoll < 10) {
+            answer.html(`You fumble with the knife to no avail, try again.`);
+            $(".playerAction").val("");
         }
         else if (playerAnswer.includes("hands")) {
             answer.html(`You need to use some sort of tool!`)
