@@ -120,7 +120,6 @@ function task1(callback) {
         }
     }
     else if (situation == "Cold") {
-        // answer.html(`You need a heat source to proceed.`)
         let subTask1completed = false;
         if (playerAnswer == "rub hands") {
             answer.html(`You vigorously rub your hands together to no avail!`)
@@ -153,7 +152,6 @@ function task1(callback) {
         }
     }
     else if (situation == "Wet") {
-        // answer.html(`You need a heat source to dry yourself off.`)
         subTask1completed = false;
         if (playerAnswer == "change clothes") {
             answer.html(`There's no extra clothes available.`)
@@ -192,7 +190,6 @@ function task1(callback) {
         }
     }   
     else if (situation == "Scared") {
-        // answer.html(`You need a heat source to dry yourself off.`)
         if (playerAnswer == "stop") {
             answer.html(`You decide to stop being scared but it doesn't work.`);
             $(".playerAction").val("")
