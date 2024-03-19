@@ -225,27 +225,34 @@ function task2(playerAnswer) {
 
 
 
-$(".playerDecision").click(function (e) { 
-    e.preventDefault();
-    
-    if (!task1Completed) {
-            task1(function(){
-                let playerAnswer = $(".playerAction").val();
-                task2(playerAnswer)
-                let gamestate = "CombatInit";  
-            });
-            
-        }
-    else if (gamestate = "CombatInit") {
-        combat();
-        let playerAnswer = $(".playerAction").val();
-        if (playerAnswer=="attack") {
-            answer.html(`With what?`);
-            $(".playerAction").val("") 
-        }
-    }
-    
+$(".playerDecision").click(function (e) {
+  e.preventDefault();
+  handlePlayerDecision();
 });
+
+$(".playerAction").on("keypress", function(e){
+    if (e.key === "Enter"){
+        e.preventDefault();
+        handlePlayerDecision();
+    }
+})
+
+function handlePlayerDecision() {
+    if (!task1Completed) {
+      task1(function () {
+        let playerAnswer = $(".playerAction").val();
+        task2(playerAnswer);
+        let gamestate = "CombatInit";
+      });
+    } else if ((gamestate = "CombatInit")) {
+      combat();
+      let playerAnswer = $(".playerAction").val();
+      if (playerAnswer == "attack") {
+        answer.html(`With what?`);
+        $(".playerAction").val("");
+      }
+    }
+  }
 
 
 function combat() {
