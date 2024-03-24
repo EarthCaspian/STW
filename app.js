@@ -10,7 +10,7 @@ let randomEnemyIndex = Math.floor(Math.random() * enemies.length);
 let enemy = enemies[randomEnemyIndex];
 
 //!Situation Generator
-let situations = ["Cold", "Wet", "Scared", "Lost", "Stuck"]
+let situations = ["Cold", "Wet", "Scared", "Lost", "Stuck", "Tired"]
 let randomSituationIndex = Math.floor(Math.random() * situations.length);
 let situation = situations[randomSituationIndex]
 
@@ -204,6 +204,28 @@ function task1(callback) {
         }
         else if (playerAnswer == "yell") {
             answer.html(`You yell out your lungs of fear. Nothing happens. `)
+            $(".playerAction").val("")
+        }
+        else {
+            answer.html(`I don't understand that, try something else.`)
+            $(".playerAction").val("")
+        }
+    }
+    else if (situation == "Tired") {
+        if (playerAnswer.includes("rest")) {
+            answer.html(`You rest and recover your strength.`);
+            $(".playerAction").val("")
+            task1Completed = true;
+            setTimeout(function(){
+                callback();
+            },2000)
+        }
+        else if (playerAnswer.includes("ignore")) {
+            answer.html(`You try to ignore and push through your lethargy, but to no avail.`);
+            $(".playerAction").val("");
+        }
+        else if (playerAnswer.includes("sleep")) {
+            answer.html(`You are not in a safe area, you cannot sleep. `)
             $(".playerAction").val("")
         }
         else {
