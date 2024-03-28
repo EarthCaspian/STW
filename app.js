@@ -299,6 +299,7 @@ function combat() {
             if (playerAnswer=="hands"){
                 answer.html(`Your fisticuffs is not effective on ${enemy}.`)
                 $(".playerAction").val("")
+                CheckGameOver("ineffective")
             }
         }
     else {
@@ -309,7 +310,7 @@ function combat() {
 function CheckGameOver(stringToCheck) {
     if (answer.text().includes(stringToCheck)) {
         gameOverCounter++;
-        if (gameOverCounter >= 2) {
+        if (gameOverCounter > 1) {
             gameOver();
         }
     }
