@@ -5,7 +5,7 @@ let randomIndex = Math.floor(Math.random() * locations.length);
 let randomLocation = locations[randomIndex];
 
 //!Enemy Generator
-let enemies = ["Goblin", "Halfling" , "Rat" , "Wolf"]
+let enemies = ["Goblin", "Halfling" , "Rat" , "Wolf","Undead"]
 let randomEnemyIndex = Math.floor(Math.random() * enemies.length);
 let enemy = enemies[randomEnemyIndex];
 
@@ -276,13 +276,17 @@ function handlePlayerDecision() {
     }
   }
 
-
 function combat() {
     const diceRoll = Math.round(Math.random() * 20);
     console.log(`You rolled ${diceRoll}.`);
     let playerAnswer = $(".playerAction").val();
     console.log("combat running");
-    if (gamestate = "CombatInit" && playerAnswer=="sword") {
+    if (gamestate == "CombatInit" && playerAnswer=="sword" && enemy == "Undead") {
+        $(".playerAction").val("")  
+        answer.html(`Sword is ineffective on ${enemy}.`)
+        CheckGameOver("ineffective")
+    }
+    else if (gamestate == "CombatInit" && playerAnswer=="sword") {
         $(".playerAction").val("") 
         if (diceRoll > 10){
             answer.html(`Your strike the ${enemy} down with your sword!.`)
@@ -294,14 +298,14 @@ function combat() {
             CheckGameOver("miss")
         }
     }
-    else if (gamestate = "CombatInit" && playerAnswer=="hands") {
+    else if (gamestate == "CombatInit" && playerAnswer=="hands") {
         $(".playerAction").val("")  
-            if (playerAnswer=="hands"){
-                answer.html(`Your fisticuffs is not effective on ${enemy}.`)
-                $(".playerAction").val("")
-                CheckGameOver("ineffective")
-            }
+        if (playerAnswer=="hands"){
+            answer.html(`Your fisticuffs ineffective on ${enemy}.`)
+            $(".playerAction").val("")
+            CheckGameOver("ineffective")
         }
+    }
     else {
         answer.html(`I don't understand that, try something else.`)
     }
