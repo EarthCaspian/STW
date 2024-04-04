@@ -50,10 +50,9 @@ let answer = $(".actionResult").html("");
 function task1(callback) {
     console.log("task 1 running");
     const diceRoll = Math.round(Math.random() * 20);
-    console.log(`You rolled ${diceRoll}.`);
-    $(".diceRoll").html(`You roll ${diceRoll}`);
     let playerAnswer = $(".playerAction").val();
     if (situation == "Stuck") {
+        $(".diceRoll").html(`You roll ${diceRoll}`);
         if (playerAnswer.includes("knife") && diceRoll >= 10) {
             answer.html(`You get yourself out using the knife.`);
             $(".playerAction").val("");
@@ -238,14 +237,20 @@ function task1(callback) {
 
 function task2(playerAnswer) {
     const diceRoll = Math.round(Math.random() * 20);
-    console.log(`You rolled ${diceRoll}.`);
     console.log("task 2 running");
-    $(".playerAction").val("")
-    HowsItGoing.html(`You are no longer ${situation}.`)
+    $(".playerAction").val("");
+    HowsItGoing.html(`You are no longer ${situation}.`);
     answer.html(`You see a ${enemy}!`);
 }
 
-
+function task3(playerAnswer) {
+    $(".currentLocation").html("");
+    mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/rune.jpeg')`;
+    const diceRoll = Math.round(Math.random() * 20);
+    console.log("task 3 running");
+    $(".playerAction").val("");
+    HowsItGoing.html(`The world around you suddenly darkens,you see a strange rune on the floor.`);
+}
 
 $(".playerDecision").click(function (e) {
   e.preventDefault();
@@ -261,22 +266,25 @@ $(".playerAction").on("keypress", function(e){
 
 function handlePlayerDecision() {
     if (!task1Completed) {
-      task1(function () {
+        task1(function () {
+          let playerAnswer = $(".playerAction").val();
+          task2(playerAnswer);
+          gamestate = "CombatInit";
+        });
+      } else if (gamestate == "CombatInit") {
+        combat(function() {
+          gamestate = "CombatOver";
+          task3();
+        });
         let playerAnswer = $(".playerAction").val();
-        task2(playerAnswer);
-        let gamestate = "CombatInit";
-      });
-    } else if ((gamestate = "CombatInit")) {
-      combat();
-      let playerAnswer = $(".playerAction").val();
-      if (playerAnswer == "attack") {
-        answer.html(`With what?`);
-        $(".playerAction").val("");
+        if (playerAnswer == "attack") {
+          answer.html(`With what?`);
+          $(".playerAction").val("");
+        }
       }
-    }
   }
 
-function combat() {
+function combat(callback) {
     const diceRoll = Math.round(Math.random() * 20);
     console.log(`You rolled ${diceRoll}.`);
     let playerAnswer = $(".playerAction").val();
@@ -287,10 +295,14 @@ function combat() {
         CheckGameOver("ineffective")
     }
     else if (gamestate == "CombatInit" && playerAnswer=="sword") {
+        $(".diceRoll").html(`You roll ${diceRoll}`);
         $(".playerAction").val("") 
         if (diceRoll > 10){
-            answer.html(`Your strike the ${enemy} down with your sword!.`)
-            $(".playerAction").val("")   
+            answer.html(`Your strike the ${enemy} down with your sword!. You have vanquished the enemy!`);
+            $(".playerAction").val("");
+            setTimeout(function(){
+                callback();
+            },2000)
         }
         else {
             answer.html(`You miss your attack the sword, ${enemy} still lives!`)
@@ -301,7 +313,7 @@ function combat() {
     else if (gamestate == "CombatInit" && playerAnswer=="hands") {
         $(".playerAction").val("")  
         if (playerAnswer=="hands"){
-            answer.html(`Your fisticuffs ineffective on ${enemy}.`)
+            answer.html(`Your fisticuffs are ineffective on ${enemy}.`)
             $(".playerAction").val("")
             CheckGameOver("ineffective")
         }
