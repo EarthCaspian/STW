@@ -35,7 +35,6 @@ $(document).ready(function () {
 
 
 let task1Completed = false;
-let task2Completed = false;
 
 let gamestate = "intro";
 
@@ -284,30 +283,42 @@ function handlePlayerDecision() {
       }
   }
 
-function combat(callback) {
+  function combat(callback) {
     const diceRoll = Math.round(Math.random() * 20);
     console.log(`You rolled ${diceRoll}.`);
     let playerAnswer = $(".playerAction").val();
     console.log("combat running");
-    if (gamestate == "CombatInit" && playerAnswer=="sword" && enemy == "Undead") {
-        $(".playerAction").val("")  
-        answer.html(`Sword is ineffective on ${enemy}.`)
-        CheckGameOver("ineffective")
-    }
-    else if (gamestate == "CombatInit" && playerAnswer=="sword") {
+    if (gamestate == "CombatInit" && playerAnswer == "sword" && enemy == "Undead") {
+        $(".playerAction").val("");  
+        answer.html(`Sword is ineffective on ${enemy}.`);
+        CheckGameOver("ineffective");
+    } else if (gamestate == "CombatInit" && playerAnswer == "mace" && enemy == "Undead") {
         $(".diceRoll").html(`You roll ${diceRoll}`);
-        $(".playerAction").val("") 
+        $(".playerAction").val("");
+        if (diceRoll > 10){
+            answer.html(`You strike the ${enemy} down with your mace!. You have vanquished the enemy!`);
+            $(".playerAction").val("");
+            setTimeout(function(){
+                callback();
+            }, 2000);
+        } else {
+            answer.html(`Your attack with the mace misses, ${enemy} still lives!`);
+            $(".playerAction").val("");
+            CheckGameOver("miss");
+        }
+    } else if (gamestate == "CombatInit" && playerAnswer == "sword") {
+        $(".diceRoll").html(`You roll ${diceRoll}`);
+        $(".playerAction").val("");
         if (diceRoll > 10){
             answer.html(`Your strike the ${enemy} down with your sword!. You have vanquished the enemy!`);
             $(".playerAction").val("");
             setTimeout(function(){
                 callback();
-            },2000)
-        }
-        else {
-            answer.html(`You miss your attack the sword, ${enemy} still lives!`)
+            }, 2000);
+        } else {
+            answer.html(`You miss your attack with the sword, ${enemy} still lives!`);
             $(".playerAction").val("");
-            CheckGameOver("miss")
+            CheckGameOver("miss");
         }
     }
     else if (gamestate == "CombatInit" && playerAnswer=="hands") {
@@ -322,6 +333,8 @@ function combat(callback) {
         answer.html(`I don't understand that, try something else.`)
     }
 }
+    
+
 
 function CheckGameOver(stringToCheck) {
     if (answer.text().includes(stringToCheck)) {
