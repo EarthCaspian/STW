@@ -248,6 +248,7 @@ function task3(playerAnswer) {
     const diceRoll = Math.round(Math.random() * 20);
     console.log("task 3 running");
     $(".playerAction").val("");
+    answer.html("");
     HowsItGoing.html(`The world around you suddenly darkens,you see a strange rune on the floor.`);
 }
 
