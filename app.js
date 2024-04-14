@@ -27,8 +27,8 @@ mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.77
 
 $(document).ready(function () {
     $(".currentLocation").html(`You are in a ${randomLocation}`);
-    $(".currentSituation").html(`You are ${situation}!`)
-    $(".actionCheck").html("What do you do?")
+    $(".currentSituation").html(`You are ${situation}!`);
+    $(".actionCheck").html("What do you do?");
     console.log("page loaded");
 });
 
@@ -242,14 +242,31 @@ function task2(playerAnswer) {
     answer.html(`You see a ${enemy}!`);
 }
 
-function task3(playerAnswer) {
+function task3() {
+    answer.html("");
     $(".currentLocation").html("");
     mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/rune.jpeg')`;
     const diceRoll = Math.round(Math.random() * 20);
     console.log("task 3 running");
-    $(".playerAction").val("");
-    answer.html("");
     HowsItGoing.html(`The world around you suddenly darkens,you see a strange rune on the floor.`);
+    $(".actionCheck").html("What do you do?");
+    let playerAnswer = $(".playerAction").val();
+        if(playerAnswer.includes("investigate")){
+            $(".diceRoll").html(`You roll ${diceRoll}`);
+            if(diceRoll < 10){
+                answer.html(`You try to figure out the details of the rune to no avail. `);
+                $(".playerAction").val("");
+            }
+            else{
+                answer.html(`You discover you need to touch the seals in order to deactivate the rune.`);
+                HowsItGoing.html(`There are 3 seals, how do you start the sequence?`);
+                $(".playerAction").val("");
+            }
+        }
+        else{
+            answer.html(`I don't understand that, try something else.`);
+            $(".playerAction").val("");
+        }
 }
 
 $(".playerDecision").click(function (e) {
@@ -265,9 +282,9 @@ $(".playerAction").on("keypress", function(e){
 })
 
 function handlePlayerDecision() {
+    let playerAnswer = $(".playerAction").val();
     if (!task1Completed) {
         task1(function () {
-          let playerAnswer = $(".playerAction").val();
           task2(playerAnswer);
           gamestate = "CombatInit";
         });
@@ -276,7 +293,6 @@ function handlePlayerDecision() {
           gamestate = "CombatOver";
           task3();
         });
-        let playerAnswer = $(".playerAction").val();
         if (playerAnswer == "attack") {
           answer.html(`With what?`);
           $(".playerAction").val("");
@@ -296,7 +312,7 @@ function handlePlayerDecision() {
     } else if (gamestate == "CombatInit" && playerAnswer == "mace" && enemy == "Undead") {
         $(".diceRoll").html(`You roll ${diceRoll}`);
         $(".playerAction").val("");
-        if (diceRoll > 10){
+        if (diceRoll >= 10){
             answer.html(`You strike the ${enemy} down with your mace!. You have vanquished the enemy!`);
             $(".playerAction").val("");
             setTimeout(function(){
@@ -310,7 +326,7 @@ function handlePlayerDecision() {
     } else if (gamestate == "CombatInit" && playerAnswer == "sword") {
         $(".diceRoll").html(`You roll ${diceRoll}`);
         $(".playerAction").val("");
-        if (diceRoll > 10){
+        if (diceRoll > 8){
             answer.html(`Your strike the ${enemy} down with your sword!. You have vanquished the enemy!`);
             $(".playerAction").val("");
             setTimeout(function(){
