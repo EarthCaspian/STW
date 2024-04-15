@@ -259,8 +259,17 @@ function task3() {
             }
             else{
                 answer.html(`You discover you need to touch the seals in order to deactivate the rune.`);
-                HowsItGoing.html(`There are 3 seals, how do you start the sequence?`);
+                HowsItGoing.html(`There are 3 seals, how do you start the sequence? Up, left or right?`);
                 $(".playerAction").val("");
+                if(playerAnswer != "right,left,up") {
+                    answer.html(`The sequence seems to be incorrect.`);
+                    $(".playerAction").val("");
+                }
+                else{
+                    answer.html(`The veil of shadow breaks, you find yourself teleported to a wizards tower.`);
+                    $(".playerAction.").val("");
+                }
+                
             }
         }
         else{
