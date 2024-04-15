@@ -34,7 +34,7 @@ ul, li {
 .mainTextbox {
     width: 640px;
     height: 480px;
-    border: 1px solid rgb(12, 1, 1);
+    border: 2px solid rgb(48, 27, 1);
     border-radius: 25px 25px;
     background: linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url(img/paperback.png);
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
