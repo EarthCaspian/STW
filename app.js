@@ -261,15 +261,23 @@ function task3() {
                 answer.html(`You discover you need to touch the seals in order to deactivate the rune.`);
                 HowsItGoing.html(`There are 3 seals, how do you start the sequence? Up, left or right?`);
                 $(".playerAction").val("");
-                if(playerAnswer != "right,left,up") {
-                    answer.html(`The sequence seems to be incorrect.`);
-                    $(".playerAction").val("");
+                let sealCounter = 3;
+                while(sealCounter != 0){
+                    playerAnswer = $(".playerAction").val("");
+                    if(playerAnswer != "right,left,up") {
+                        answer.html(`The sequence seems to be incorrect.`);
+                        $(".playerAction").val("");
+                        sealCounter -= 1
+                    }
+                    else{
+                        answer.html(`The veil of shadow breaks, you find yourself teleported to a wizards tower.`);
+                        $(".playerAction").val("");
+                        break;
+                    }
                 }
-                else{
-                    answer.html(`The veil of shadow breaks, you find yourself teleported to a wizards tower.`);
-                    $(".playerAction.").val("");
+                if (sealCounter == 0) {
+                    sealGameOver();
                 }
-                
             }
         }
         else{
@@ -365,14 +373,20 @@ function handlePlayerDecision() {
 function CheckGameOver(stringToCheck) {
     if (answer.text().includes(stringToCheck)) {
         gameOverCounter++;
-        if (gameOverCounter > 1) {
-            gameOver();
+        if (gameOverCounter > 2) {
+            combatGameOver();
         }
     }
 }
 
-function gameOver() {
+function combatGameOver() {
     answer.html(`${enemy} has bested you and you have died. Try Again.`)
     $(".playerAction").val("");
     gameOverCounter = 0;
+}
+
+function sealGameOver() {
+    answer.html(`Your fumbling with the magical seal unleashed an arcane explosion and you are disintigrated. Try Again.`)
+    $(".playerAction").val("");
+    sealCounter = 3;
 }
