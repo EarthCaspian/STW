@@ -35,6 +35,8 @@ $(document).ready(function () {
 
 
 let task1Completed = false;
+let task2Completed = false;
+let task3Completed = false;
 
 let gamestate = "intro";
 
@@ -240,9 +242,10 @@ function task2(playerAnswer) {
     $(".playerAction").val("");
     HowsItGoing.html(`You are no longer ${situation}.`);
     answer.html(`You see a ${enemy}!`);
+    $(".actionCheck").html("What do you do?");
 }
 
-function task3() {
+function task3(callback) {
     answer.html("");
     $(".currentLocation").html("");
     mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/rune.jpeg')`;
@@ -250,7 +253,7 @@ function task3() {
     console.log("task 3 running");
     HowsItGoing.html(`The world around you suddenly darkens,you see a strange rune on the floor.`);
     $(".actionCheck").html("What do you do?");
-    let playerAnswer = $(".playerAction").val();
+    $(".playerAction").val("");
         if(playerAnswer.includes("investigate")){
             $(".diceRoll").html(`You roll ${diceRoll}`);
             if(diceRoll < 10){
@@ -272,6 +275,9 @@ function task3() {
                     else{
                         answer.html(`The veil of shadow breaks, you find yourself teleported to a wizards tower.`);
                         $(".playerAction").val("");
+                        setTimeout(function(){
+                            callback();
+                        }, 2000);
                         break;
                     }
                 }
@@ -299,25 +305,29 @@ $(".playerAction").on("keypress", function(e){
 })
 
 function handlePlayerDecision() {
-    let playerAnswer = $(".playerAction").val();
-    if (!task1Completed) {
-        task1(function () {
-          task2(playerAnswer);
-          gamestate = "CombatInit";
-        });
-      } else if (gamestate == "CombatInit") {
-        combat(function() {
-          gamestate = "CombatOver";
-          task3();
-        });
-        if (playerAnswer == "attack") {
-          answer.html(`With what?`);
-          $(".playerAction").val("");
-        }
-      }
+  let playerAnswer = $(".playerAction").val();
+  if (!task1Completed) {
+    task1(function () {
+      task2(playerAnswer);
+      gamestate = "CombatInit";
+    });
+  } else if (gamestate == "CombatInit") {
+    combat(function () {
+      gamestate = "CombatOver";
+      task3(function() {
+        gamestate = "OutofSeal";
+    });
+    });
+    if (playerAnswer == "attack") {
+      answer.html(`With what?`);
+      $(".playerAction").val("");
+    }
+  } 
   }
 
+
   function combat(callback) {
+    task2Completed = true;
     const diceRoll = Math.round(Math.random() * 20);
     console.log(`You rolled ${diceRoll}.`);
     let playerAnswer = $(".playerAction").val();
