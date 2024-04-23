@@ -15,7 +15,7 @@ let randomSituationIndex = Math.floor(Math.random() * situations.length);
 let situation = situations[randomSituationIndex]
 
 //!Roll 20
-const diceRoll = Math.round(Math.random() * 20);
+const diceRoll = Math.round(1 + Math.random() * 19);
 console.log(diceRoll);
 
 //!Game Over Status
@@ -50,7 +50,7 @@ let answer = $(".actionResult").html("");
 
 function task1(callback) {
     console.log("task 1 running");
-    const diceRoll = Math.round(Math.random() * 20);
+    const diceRoll = Math.round(1 + Math.random() * 19);
     let playerAnswer = $(".playerAction").val();
     if (situation == "Stuck") {
         $(".diceRoll").html(`You roll ${diceRoll}`);
@@ -237,7 +237,7 @@ function task1(callback) {
 
 
 function task2(playerAnswer) {
-    const diceRoll = Math.round(Math.random() * 20);
+    const diceRoll = Math.round(1 + Math.random() * 19);
     console.log("task 2 running");
     $(".playerAction").val("");
     HowsItGoing.html(`You are no longer ${situation}.`);
@@ -249,11 +249,12 @@ function task3(callback) {
     answer.html("");
     $(".currentLocation").html("");
     mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/rune.jpeg')`;
-    const diceRoll = Math.round(Math.random() * 20);
+    const diceRoll = Math.round(1 + Math.random() * 19);
     console.log("task 3 running");
     HowsItGoing.html(`The world around you suddenly darkens,you see a strange rune on the floor.`);
     $(".actionCheck").html("What do you do?");
     $(".playerAction").val("");
+    let playerAnswer = $(".playerAction").val();
         if(playerAnswer.includes("investigate")){
             $(".diceRoll").html(`You roll ${diceRoll}`);
             if(diceRoll < 10){
@@ -293,12 +294,14 @@ function task3(callback) {
 }
 
 $(".playerDecision").click(function (e) {
+  console.log("Action clicked");
   e.preventDefault();
   handlePlayerDecision();
 });
 
 $(".playerAction").on("keypress", function(e){
     if (e.key === "Enter"){
+        console.log("Enter key pressed");
         e.preventDefault();
         handlePlayerDecision();
     }
@@ -328,7 +331,7 @@ function handlePlayerDecision() {
 
   function combat(callback) {
     task2Completed = true;
-    const diceRoll = Math.round(Math.random() * 20);
+    const diceRoll = Math.round(1 + Math.random() * 19);
     console.log(`You rolled ${diceRoll}.`);
     let playerAnswer = $(".playerAction").val();
     console.log("combat running");
