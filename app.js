@@ -47,7 +47,7 @@ let HowsItGoing = $(".currentSituation").html(`You are ${situation}!`)
 let question = $(".actionCheck").html("");
 let answer = $(".actionResult").html("");
 
-
+//function to handle conditionals for randomized events
 function task1(callback) {
     console.log("task 1 running");
     const diceRoll = Math.round(1 + Math.random() * 19);
@@ -235,7 +235,7 @@ function task1(callback) {
     }
 }
 
-
+//function for combat event trigger
 function task2(playerAnswer) {
     const diceRoll = Math.round(1 + Math.random() * 19);
     console.log("task 2 running");
@@ -245,6 +245,7 @@ function task2(playerAnswer) {
     $(".actionCheck").html("What do you do?");
 }
 
+//function for seal puzzle
 function task3(callback) {
     answer.html("");
     $(".currentLocation").html("");
@@ -293,12 +294,15 @@ function task3(callback) {
         }
 }
 
+
+//click event handler
 $(".playerDecision").click(function (e) {
   console.log("Action clicked");
   e.preventDefault();
   handlePlayerDecision();
 });
 
+//enter keypress event handler
 $(".playerAction").on("keypress", function(e){
     if (e.key === "Enter"){
         console.log("Enter key pressed");
@@ -307,6 +311,7 @@ $(".playerAction").on("keypress", function(e){
     }
 })
 
+//main event handler 
 function handlePlayerDecision() {
   let playerAnswer = $(".playerAction").val();
   if (!task1Completed) {
@@ -328,7 +333,7 @@ function handlePlayerDecision() {
   } 
   }
 
-
+//function for the combat sequence
   function combat(callback) {
     task2Completed = true;
     const diceRoll = Math.round(1 + Math.random() * 19);
