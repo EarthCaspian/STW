@@ -29,6 +29,7 @@ ul, li {
     align-items: center;
     color: white;
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    margin: 2px;
 }
 
 .mainTextbox {
@@ -37,7 +38,6 @@ ul, li {
     border: 2px solid rgb(48, 27, 1);
     border-radius: 25px 25px;
     background: linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url(img/paperback.png);
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     background-position: center;
     background-size: cover;
     text-align: center;
@@ -85,4 +85,31 @@ ul, li {
 
 .accordion {
     width: 30%;
+    margin-left: 10%;
+}
+
+
+@media only screen and (max-width:1199px) {
+    .accordion {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media only screen and (max-width:991px) {
+    .accordion {
+        width: auto;
+    }
+
+    .container {
+        margin: auto;
+        flex-wrap: wrap-reverse;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width:320px) {
+    .playerDecision {
+        font-size: small;
+    }
 }
