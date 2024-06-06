@@ -245,53 +245,75 @@ function task2(playerAnswer) {
     $(".actionCheck").html("What do you do?");
 }
 
-//function for seal puzzle
+
+// function for seal puzzle
 function task3(callback) {
     answer.html("");
     $(".currentLocation").html("");
     mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/rune.jpeg')`;
-    const diceRoll = Math.round(1 + Math.random() * 19);
     console.log("task 3 running");
-    HowsItGoing.html(`The world around you suddenly darkens,you see a strange rune on the floor.`);
+    HowsItGoing.html(`The world around you suddenly darkens, you see a strange rune on the floor.`);
     $(".actionCheck").html("What do you do?");
-    $(".playerAction").val("");
-    let playerAnswer = $(".playerAction").val();
-        if(playerAnswer.includes("investigate")){
+    $(".playerAction").val("").focus();
+
+    let rerollCounter = 3;
+
+    function handlePlayerAction(event) {
+        if (event.key !== 'Enter') return; // Proceed only when Enter key is pressed
+
+        let playerAnswer = $(".playerAction").val().toLowerCase().trim();
+
+        if (playerAnswer.includes("investigate")) {
+            const diceRoll = Math.round(1 + Math.random() * 19);
             $(".diceRoll").html(`You roll ${diceRoll}`);
-            if(diceRoll < 10){
+            if (diceRoll < 10) {
                 answer.html(`You try to figure out the details of the rune to no avail. `);
-                $(".playerAction").val("");
-            }
-            else{
+                $(".playerAction").val("").focus();
+                rerollCounter -= 1;
+                if (rerollCounter === 0) {
+                    $(".playerAction").off('keydown', handlePlayerAction);
+                    sealGameOver();
+                }
+            } else {
                 answer.html(`You discover you need to touch the seals in order to deactivate the rune.`);
                 HowsItGoing.html(`There are 3 seals, how do you start the sequence? Up, left or right?`);
-                $(".playerAction").val("");
+                $(".playerAction").val("").focus();
+
                 let sealCounter = 3;
-                while(sealCounter != 0){
-                    playerAnswer = $(".playerAction").val("");
-                    if(playerAnswer != "right,left,up") {
-                        answer.html(`The sequence seems to be incorrect.`);
-                        $(".playerAction").val("");
-                        sealCounter -= 1
-                    }
-                    else{
-                        answer.html(`The veil of shadow breaks, you find yourself teleported to a wizards tower.`);
-                        $(".playerAction").val("");
+                let sequence = '';
+
+                function handleSealSequence(event) {
+                    if (event.key !== 'Enter') return; // Proceed only when Enter key is pressed
+
+                    let playerAnswer = $(".playerAction").val().toLowerCase().trim();
+                    sequence += (sequence ? ',' : '') + playerAnswer;
+
+                    if (sequence === "right,left,up") {
+                        answer.html(`The veil of shadow breaks, you find yourself teleported to a wizard's tower.`);
+                        $(".playerAction").val("").off('keydown', handleSealSequence).focus(); // Remove the event listener
                         setTimeout(function(){
                             callback();
                         }, 2000);
-                        break;
+                    } else {
+                        answer.html(`The sequence seems to be incorrect.`);
+                        $(".playerAction").val("").focus();
+                        sealCounter -= 1;
+                        if (sealCounter === 0) {
+                            $(".playerAction").off('keydown', handleSealSequence); // Remove the event listener
+                            sealExplosionGameOver();
+                        }
                     }
                 }
-                if (sealCounter == 0) {
-                    sealGameOver();
-                }
+
+                $(".playerAction").off('keydown', handlePlayerAction).on('keydown', handleSealSequence).focus();
             }
-        }
-        else{
+        } else {
             answer.html(`I don't understand that, try something else.`);
-            $(".playerAction").val("");
+            $(".playerAction").val("").focus();
         }
+    }
+
+    $(".playerAction").off('keydown').on('keydown', handlePlayerAction).focus();
 }
 
 
@@ -403,8 +425,14 @@ function combatGameOver() {
     gameOverCounter = 0;
 }
 
-function sealGameOver() {
+function sealExplosionGameOver() {
+    mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/arcaneExplosion.jpeg')`;
     answer.html(`Your fumbling with the magical seal unleashed an arcane explosion and you are disintigrated. Try Again.`)
-    $(".playerAction").val("");
-    sealCounter = 3;
+    $(".playerAction").val("").off('keydown').focus(); // Ensuring the event listener is removed
+}
+
+function sealGameOver() {
+    mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/trapped.jpeg')`;
+    answer.html(`The seals have locked. You are trapped in eternal void forever. Game Over.`);
+    $(".playerAction").val("").off('keydown').focus(); // Ensuring the event listener is removed
 }
