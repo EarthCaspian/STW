@@ -25,14 +25,70 @@ let gameOverCounter = 0;
 let mainTextbox = document.querySelector(".mainTextbox");
 mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/${randomLocation}.png')`;
 
+function displayIntroText(text, callback) {
+    let introTextDiv = $(".introText");
+    let i = 0;
+
+    function typeWriter() {
+        if (i < text.length) {
+            introTextDiv.append(text.charAt(i));
+            i++;
+            setTimeout(typeWriter, 50); 
+        } else {
+            callback();
+        }
+    }
+
+    typeWriter();
+}
+
+let answer;
+
 $(document).ready(function () {
+
+    mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wiz1.png')`;
+
+    answer = $(".actionResult");
+    answer.html("");
+
+     // Initially hide all game elements
+    $(".currentLocation").hide();
+    $(".currentSituation").hide();
+    $(".actionCheck").hide();
+    $(".diceRoll").hide();
+    $(".inputNbutton").hide();
+    $(".playerAction").hide();
+    $(".playerDecision").hide();
+
+    let introText = "Welcome to Stop the Wizard text adventure game! Your journey begins now...";
+    displayIntroText(introText, function() {
+        $("#startButton").show();
+    });
+});
+
+$("#startButton").on("click", function() {
+    $("#startButton").hide();
+    $(".introText").hide();
+
+    answer.html("");
+
+     // Show all game elements
+    $(".currentLocation").show();
+    $(".currentSituation").show();
+    $(".actionCheck").show();
+    $(".diceRoll").show();
+    $(".inputNbutton").show();
+    $(".playerAction").show();
+    $(".playerDecision").show();
+    
+    // Set initial game state
+    mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/${randomLocation}.png')`;
     $(".currentLocation").html(`You are in a ${randomLocation}`);
     $(".currentSituation").html(`You are ${situation}!`);
     $(".actionCheck").html("What do you do?");
     console.log("page loaded");
+
 });
-
-
 
 let task1Completed = false;
 let task2Completed = false;
@@ -45,7 +101,7 @@ let gamestate = "intro";
 
 let HowsItGoing = $(".currentSituation").html(`You are ${situation}!`)
 let question = $(".actionCheck").html("");
-let answer = $(".actionResult").html("");
+
 
 //function to handle conditionals for randomized events
 function task1(callback) {
@@ -318,11 +374,18 @@ function task3(callback) {
 
 
 //click event handler
-$(".playerDecision").click(function (e) {
-  console.log("Action clicked");
-  e.preventDefault();
-  handlePlayerDecision();
+// $(".playerDecision").click(function (e) {
+//   console.log("Action clicked");
+//   e.preventDefault();
+//   handlePlayerDecision();
+// });
+
+$("#playerDecisionButton").click(function (e) {
+    console.log("Action clicked");
+    e.preventDefault();
+    handlePlayerDecision();
 });
+
 
 //enter keypress event handler
 $(".playerAction").on("keypress", function(e){
