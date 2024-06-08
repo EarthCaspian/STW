@@ -25,6 +25,8 @@ let gameOverCounter = 0;
 let mainTextbox = document.querySelector(".mainTextbox");
 mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/${randomLocation}.png')`;
 
+
+//function for the intro text scroll
 function displayIntroText(text, callback) {
     let introTextDiv = $(".introText");
     let i = 0;
@@ -42,12 +44,14 @@ function displayIntroText(text, callback) {
     typeWriter();
 }
 
+//answer initialized
 let answer;
 
 $(document).ready(function () {
 
-    mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wiz1.png')`;
+    mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wizDark.jpeg')`;
 
+    //actionResult assigned to answer and set to empty string
     answer = $(".actionResult");
     answer.html("");
 
@@ -70,6 +74,7 @@ $("#startButton").on("click", function() {
     $("#startButton").hide();
     $(".introText").hide();
 
+    //answer is emptied to avoid else condition
     answer.html("");
 
      // Show all game elements
@@ -90,20 +95,18 @@ $("#startButton").on("click", function() {
 
 });
 
+//task list
 let task1Completed = false;
 let task2Completed = false;
 let task3Completed = false;
 
-let gamestate = "intro";
 
-
-
-
+//Random situation is triggered, question initialized
 let HowsItGoing = $(".currentSituation").html(`You are ${situation}!`)
 let question = $(".actionCheck").html("");
 
 
-//function to handle conditionals for randomized events
+//function to handle conditionals for randomized starting events
 function task1(callback) {
     console.log("task 1 running");
     const diceRoll = Math.round(1 + Math.random() * 19);
@@ -298,6 +301,12 @@ function task2(playerAnswer) {
     $(".playerAction").val("");
     HowsItGoing.html(`You are no longer ${situation}.`);
     answer.html(`You see a ${enemy}!`);
+    if(enemy == "Undead"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/undead.jpeg')`;
+    }
+    else if (enemy == "Goblin"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/goblin.jpeg')`;
+    }
     $(".actionCheck").html("What do you do?");
 }
 
@@ -374,12 +383,6 @@ function task3(callback) {
 
 
 //click event handler
-// $(".playerDecision").click(function (e) {
-//   console.log("Action clicked");
-//   e.preventDefault();
-//   handlePlayerDecision();
-// });
-
 $("#playerDecisionButton").click(function (e) {
     console.log("Action clicked");
     e.preventDefault();
@@ -490,7 +493,7 @@ function combatGameOver() {
 
 function sealExplosionGameOver() {
     mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/arcaneExplosion.jpeg')`;
-    answer.html(`Your fumbling with the magical seal unleashed an arcane explosion and you are disintigrated. Try Again.`)
+    answer.html(`Your fumbling with the magical seal unleashed an arcane explosion and you are disintigrated. Game Over.`)
     $(".playerAction").val("").off('keydown').focus(); // Ensuring the event listener is removed
 }
 

@@ -6,7 +6,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, rgba(89, 19, 252, 0.603),rgba(0, 0, 0, 0.575)),url(img/bg1.png);
+    background: linear-gradient(to bottom, rgba(89, 19, 252, 0.603),rgba(0, 0, 0, 0.875)),url(img/bg1.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -35,7 +35,7 @@ ul, li {
 .mainTextbox {
     width: 640px;
     height: 480px;
-    border: 2px solid rgb(48, 27, 1);
+    border: 2px groove rgb(190, 190, 190);
     border-radius: 25px 25px;
     background: linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url(img/paperback.png);
     background-position: center;
