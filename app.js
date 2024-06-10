@@ -5,7 +5,7 @@ let randomIndex = Math.floor(Math.random() * locations.length);
 let randomLocation = locations[randomIndex];
 
 //!Enemy Generator
-let enemies = ["Goblin", "Halfling" , "Rat" , "Wolf","Undead"]
+let enemies = ["Goblin", "Halfling" , "Rat" , "Wolf", "Undead"]
 let randomEnemyIndex = Math.floor(Math.random() * enemies.length);
 let enemy = enemies[randomEnemyIndex];
 
@@ -301,12 +301,41 @@ function task2(playerAnswer) {
     $(".playerAction").val("");
     HowsItGoing.html(`You are no longer ${situation}.`);
     answer.html(`You see a ${enemy}!`);
-    if(enemy == "Undead"){
-        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/undead.jpeg')`;
+
+    //Undead
+    if(enemy == "Undead" && randomLocation == "Castle"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/undeadCastle.jpeg')`;
     }
-    else if (enemy == "Goblin"){
-        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/goblin.jpeg')`;
+    else if(enemy == "Undead" && randomLocation == "Clearing"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/undeadClearing.jpeg')`;
     }
+    else if(enemy == "Undead" && randomLocation == "Dark Forest"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/undeadDarkForest.jpeg')`;
+    }
+    else if(enemy == "Undead" && randomLocation == "Meadow"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/undeadMeadow.jpeg')`;
+    }
+    else if(enemy == "Undead" && randomLocation == "Swamp"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/undeadSwamp.jpeg')`;
+    }
+
+    //Goblin
+    else if (enemy == "Goblin" && randomLocation == "Swamp"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/goblinSwamp.jpeg')`;
+    }
+    else if (enemy == "Goblin" && randomLocation == "Castle"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/goblinCastle.jpeg')`;
+    }
+    else if (enemy == "Goblin" && randomLocation == "Dark Forest"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/goblinDarkForest.jpeg')`;
+    }
+    else if (enemy == "Goblin" && randomLocation == "Clearing"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/goblinClearing.jpeg')`;
+    }
+    else if (enemy == "Goblin" && randomLocation == "Meadow"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/goblinMeadow.jpeg')`;
+    }
+    
     $(".actionCheck").html("What do you do?");
 }
 
