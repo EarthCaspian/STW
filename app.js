@@ -336,6 +336,24 @@ function task2(playerAnswer) {
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/goblinMeadow.jpeg')`;
     }
     
+    //Wolf
+
+    else if (enemy == "Wolf" && randomLocation == "Swamp"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wolfSwamp.jpeg')`;
+    }
+    else if (enemy == "Wolf" && randomLocation == "Castle"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wolfCastle.jpeg')`;
+    }
+    else if (enemy == "Wolf" && randomLocation == "Dark Forest"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wolfDarkForest.jpeg')`;
+    }
+    else if (enemy == "Wolf" && randomLocation == "Clearing"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wolfClearing.jpeg')`;
+    }
+    else if (enemy == "Wolf" && randomLocation == "Meadow"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wolfMeadow.jpeg')`;
+    }
+    
     $(".actionCheck").html("What do you do?");
 }
 
