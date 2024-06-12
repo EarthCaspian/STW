@@ -337,7 +337,6 @@ function task2(playerAnswer) {
     }
     
     //Wolf
-
     else if (enemy == "Wolf" && randomLocation == "Swamp"){
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wolfSwamp.jpeg')`;
     }
@@ -352,6 +351,40 @@ function task2(playerAnswer) {
     }
     else if (enemy == "Wolf" && randomLocation == "Meadow"){
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wolfMeadow.jpeg')`;
+    }
+
+    //Rat
+    else if (enemy == "Rat" && randomLocation == "Swamp"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/ratSwamp.jpg')`;
+    }
+    else if (enemy == "Rat" && randomLocation == "Castle"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/ratCastle.jpg')`;
+    }
+    else if (enemy == "Rat" && randomLocation == "Dark Forest"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/ratDarkForest.jpg')`;
+    }
+    else if (enemy == "Rat" && randomLocation == "Clearing"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/ratClearing.jpg')`;
+    }
+    else if (enemy == "Rat" && randomLocation == "Meadow"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/ratMeadow.jpg')`;
+    }
+
+    //Halfling
+    else if (enemy == "Halfling" && randomLocation == "Swamp"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/halflingSwamp.jpg')`;
+    }
+    else if (enemy == "Halfling" && randomLocation == "Castle"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/halflingCastle.jpg')`;
+    }
+    else if (enemy == "Halfling" && randomLocation == "Dark Forest"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/halflingDarkForest.jpg')`;
+    }
+    else if (enemy == "Halfling" && randomLocation == "Clearing"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/halflingClearing.jpg')`;
+    }
+    else if (enemy == "Halfling" && randomLocation == "Meadow"){
+        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/halflingMeadow.jpg')`;
     }
     
     $(".actionCheck").html("What do you do?");
