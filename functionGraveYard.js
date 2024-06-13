@@ -1,5 +1,24 @@
 //! here lies the old functions, perhaps one day.
 
+//word by word title crawl
+// function displayIntroText(text, callback) {
+//     let introTextDiv = $(".introText");
+//     let words = text.split(' ');
+//     let i = 0;
+
+//     function typeWriter() {
+//         if (i < words.length) {
+//             introTextDiv.append(words[i] + ' ');
+//             i++;
+//             setTimeout(typeWriter, 100); 
+//         } else {
+//             callback();
+//         }
+//     }
+
+//     typeWriter();
+// }
+
 //old function for seal puzzle
 // function task3(callback) {
 //     answer.html("");
