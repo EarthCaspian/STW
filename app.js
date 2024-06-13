@@ -10,7 +10,7 @@ let randomEnemyIndex = Math.floor(Math.random() * enemies.length);
 let enemy = enemies[randomEnemyIndex];
 
 //!Situation Generator
-let situations = ["Cold", "Wet", "Scared", "Lost", "Stuck", "Tired"]
+let situations = ["Cold", "Wet", "Scared", "Stuck", "Tired", "Lost"]
 let randomSituationIndex = Math.floor(Math.random() * situations.length);
 let situation = situations[randomSituationIndex]
 
@@ -155,6 +155,7 @@ function task1(callback) {
         
         }
         else if (subTask1completed = true && playerAnswer.includes("check") || playerAnswer.includes("go")) {
+            $(".playerAction").val("")
             answer.html(`You approach the light source.`)
             task1Completed = true;
             setTimeout(function(){
@@ -508,6 +509,7 @@ function handlePlayerDecision() {
     console.log(`You rolled ${diceRoll}.`);
     let playerAnswer = $(".playerAction").val();
     console.log("combat running");
+    let meleeCombatWords = ["hands","fist","fists","punch"];
     if (gamestate == "CombatInit" && playerAnswer == "sword" && enemy == "Undead") {
         $(".playerAction").val("");  
         answer.html(`Sword is ineffective on ${enemy}.`);
@@ -541,13 +543,10 @@ function handlePlayerDecision() {
             CheckGameOver("miss");
         }
     }
-    else if (gamestate == "CombatInit" && playerAnswer=="hands") {
-        $(".playerAction").val("")  
-        if (playerAnswer=="hands"){
-            answer.html(`Your fisticuffs are ineffective on ${enemy}.`)
-            $(".playerAction").val("")
-            CheckGameOver("ineffective")
-        }
+    else if (gamestate == "CombatInit" && meleeCombatWords.some(word => playerAnswer.includes(word))) {
+        answer.html(`Your fisticuffs are ineffective on ${enemy}.`)
+        $(".playerAction").val("")
+        CheckGameOver("ineffective")
     }
     else {
         answer.html(`I don't understand that, try something else.`)
