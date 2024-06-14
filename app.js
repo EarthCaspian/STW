@@ -64,6 +64,7 @@ $(document).ready(function () {
     $(".playerAction").hide();
     $(".playerDecision").hide();
 
+    //introText is initialized and function call
     let introText = "Welcome to Stop the Wizard text adventure game! Your journey begins now...";
     displayIntroText(introText, function() {
         $("#startButton").show();
@@ -71,6 +72,7 @@ $(document).ready(function () {
 });
 
 $("#startButton").on("click", function() {
+    //hide the intro elements
     $("#startButton").hide();
     $(".introText").hide();
 
@@ -301,7 +303,11 @@ function task2(playerAnswer) {
     console.log("task 2 running");
     $(".playerAction").val("");
     HowsItGoing.html(`You are no longer ${situation}.`);
-    answer.html(`You see a ${enemy}!`);
+
+    // Checking if the first letter of enemy is a vowel or not
+    const article = ['a', 'e', 'i', 'o', 'u'].includes(enemy[0].toLowerCase()) ? 'an' : 'a';
+
+    answer.html(`You see ${article} ${enemy}!`);
 
     //Undead
     if(enemy == "Undead" && randomLocation == "Castle"){
@@ -509,7 +515,7 @@ function handlePlayerDecision() {
     console.log(`You rolled ${diceRoll}.`);
     let playerAnswer = $(".playerAction").val();
     console.log("combat running");
-    let meleeCombatWords = ["hands","fist","fists","punch"];
+    let unarmedCombatWords = ["hands","fist","fists","punch"];
     if (gamestate == "CombatInit" && playerAnswer == "sword" && enemy == "Undead") {
         $(".playerAction").val("");  
         answer.html(`Sword is ineffective on ${enemy}.`);
@@ -543,7 +549,7 @@ function handlePlayerDecision() {
             CheckGameOver("miss");
         }
     }
-    else if (gamestate == "CombatInit" && meleeCombatWords.some(word => playerAnswer.includes(word))) {
+    else if (gamestate == "CombatInit" && unarmedCombatWords.some(word => playerAnswer.includes(word))) {
         answer.html(`Your fisticuffs are ineffective on ${enemy}.`)
         $(".playerAction").val("")
         CheckGameOver("ineffective")
