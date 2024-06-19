@@ -143,7 +143,7 @@ function task1(callback) {
     else if (situation == "Lost")  {
         let subTask1completed = false;
         if (playerAnswer.includes("look") || playerAnswer.includes("search")) {
-            answer.html(`You're unsure about which way to go. Try some directions.`)
+            answer.html(`You look around but unsure about which way to go. Try some directions.`)
             $(".playerAction").val("")
         }
         else if (playerAnswer.includes("north")) {
@@ -191,7 +191,7 @@ function task1(callback) {
             answer.html(`You look around for a while, there doesn't seem to be any place to get inside.`)
             $(".playerAction").val("")
         }
-        else if (playerAnswer == "make fire") {
+        else if (playerAnswer.includes("fire")) {
             subTask1completed = true;
             answer.html(`You need wood and stones to make a campfire.`)
             $(".playerAction").val("")
@@ -219,7 +219,7 @@ function task1(callback) {
             answer.html(`There's no extra clothes available.`)
             $(".playerAction").val("")
         }
-        else if (playerAnswer == "make fire") {
+        else if (playerAnswer.includes("fire")) {
             subTask1completed = true;
             answer.html(`You need wood and stones to make a campfire.`)
             $(".playerAction").val("")
@@ -253,7 +253,7 @@ function task1(callback) {
     }   
     else if (situation == "Scared") {
         if (playerAnswer == "stop") {
-            answer.html(`You decide to stop being scared but it doesn't work.`);
+            answer.html(`You decision to stop being scared doesn't seem to work.`);
             $(".playerAction").val("")
         }
         else if (playerAnswer == "meditate") {
@@ -264,8 +264,16 @@ function task1(callback) {
                 callback();
             },2000)
         }
-        else if (playerAnswer == "yell") {
-            answer.html(`You yell out your lungs of fear. Nothing happens. `)
+        else if (playerAnswer.includes("breath")) {
+            answer.html(`You take deep breaths to calm down. It works.`);
+            $(".playerAction").val("");
+            task1Completed = true;
+            setTimeout(function(){
+                callback();
+            },2000)
+        }
+        else if (playerAnswer.includes("yell") || playerAnswer.includes("shout")) {
+            answer.html(`You yell out your lungs of fear. Nothing happens.`)
             $(".playerAction").val("")
         }
         else {
