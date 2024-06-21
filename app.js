@@ -196,12 +196,12 @@ function task1(callback) {
             answer.html(`You need wood and stones to make a campfire.`)
             $(".playerAction").val("")
         }    
-        else if (subTask1completed = true && playerAnswer == "find wood") {
+        else if (subTask1completed = true && playerAnswer.includes("wood")) {
                 answer.html(`You gather some wood. Some stones would go together with this to make a campfire.`)
                 $(".playerAction").val("")
                 findWood = true;
         }
-        else if (findWood = true && playerAnswer == "find stones") {
+        else if (findWood = true && playerAnswer.includes("stones")) {
                     answer.html(`You combine stones and wood to make a campfire. You're now feeling warm.`)    
                     task1Completed = true;
                     setTimeout(function(){
@@ -224,12 +224,12 @@ function task1(callback) {
             answer.html(`You need wood and stones to make a campfire.`)
             $(".playerAction").val("")
         }    
-        else if (subTask1completed = true && playerAnswer == "find wood") {
+        else if (subTask1completed = true && playerAnswer.includes("wood")) {
                 answer.html(`You gather some wood. Some stones would go together with this to make a campfire.`)
                 $(".playerAction").val("")
                 findWood = true
         }
-        else if (findWood = true && playerAnswer == "find stones") {
+        else if (findWood = true && playerAnswer.includes("stones")) {
                     answer.html(`You combine stones and wood to make a campfire. You're now dry.`)    
                     task1Completed = true;
                     setTimeout(function(){
