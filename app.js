@@ -215,7 +215,7 @@ function task1(callback) {
     }
     else if (situation == "Wet") {
         subTask1completed = false;
-        if (playerAnswer == "change clothes") {
+        if (playerAnswer.includes("clothes")) {
             answer.html(`There's no extra clothes available.`)
             $(".playerAction").val("")
         }
@@ -579,6 +579,7 @@ function CheckGameOver(stringToCheck) {
 }
 
 function combatGameOver() {
+    mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/combatDefeat.jpeg')`;
     answer.html(`${enemy} has bested you and you have died. Try Again.`)
     $(".playerAction").val("");
     gameOverCounter = 0;
