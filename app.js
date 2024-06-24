@@ -49,6 +49,7 @@ let answer;
 
 $(document).ready(function () {
 
+    //Intro bg image
     mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wizDark.jpeg')`;
 
     //actionResult assigned to answer and set to empty string
@@ -317,6 +318,8 @@ function task2(playerAnswer) {
 
     answer.html(`You see ${article} ${enemy}!`);
 
+    //Enemy images according to location
+
     //Undead
     if(enemy == "Undead" && randomLocation == "Castle"){
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/undeadCastle.jpeg')`;
@@ -568,7 +571,7 @@ function handlePlayerDecision() {
 }
     
 
-
+//condition checker function for combat related game over
 function CheckGameOver(stringToCheck) {
     if (answer.text().includes(stringToCheck)) {
         gameOverCounter++;
