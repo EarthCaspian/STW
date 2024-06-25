@@ -188,7 +188,7 @@ function task1(callback) {
             answer.html(`You vigorously rub your hands together to no avail!`)
             $(".playerAction").val("")
         }
-        else if (playerAnswer == "find shelter") {
+        else if (playerAnswer.includes("shelter")) {
             answer.html(`You look around for a while, there doesn't seem to be any place to get inside.`)
             $(".playerAction").val("")
         }
@@ -264,6 +264,10 @@ function task1(callback) {
             setTimeout(function(){
                 callback();
             },2000)
+        }
+        else if (playerAnswer.includes("help")) {
+            answer.html(`You are a lone adventurer.There's nobody to help you.`);
+            $(".playerAction").val("")
         }
         else if (playerAnswer.includes("breath")) {
             answer.html(`You take deep breaths to calm down. It works.`);
