@@ -563,6 +563,20 @@ function handlePlayerDecision() {
             $(".playerAction").val("");
             CheckGameOver("miss");
         }
+    } else if (gamestate == "CombatInit" && playerAnswer == "bow") {
+        $(".diceRoll").html(`You roll ${diceRoll}`);
+        $(".playerAction").val("");
+        if (diceRoll > 8){
+            answer.html(`Your shoot the ${enemy} down with a rain of arrows!. You have vanquished the enemy!`);
+            $(".playerAction").val("");
+            setTimeout(function(){
+                callback();
+            }, 2000);
+        } else {
+            answer.html(`You miss your attack with the bow, ${enemy} still lives!`);
+            $(".playerAction").val("");
+            CheckGameOver("miss");
+        }
     }
     else if (gamestate == "CombatInit" && unarmedCombatWords.some(word => playerAnswer.includes(word))) {
         answer.html(`Your fisticuffs are ineffective on ${enemy}.`)
