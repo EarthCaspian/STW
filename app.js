@@ -578,6 +578,21 @@ function handlePlayerDecision() {
             CheckGameOver("miss");
         }
     }
+    else if (gamestate == "CombatInit" && playerAnswer.includes("magic") || playerAnswer.includes("spell") || playerAnswer.includes("cast")) {
+        $(".diceRoll").html(`You roll ${diceRoll}`);
+        $(".playerAction").val("");
+        if (diceRoll > 8){
+            answer.html(`You incinerate the ${enemy} with magic! You have vanquished the enemy!`);
+            $(".playerAction").val("");
+            setTimeout(function(){
+                callback();
+            }, 2000);
+        } else {
+            answer.html(`You miss your magic attack, ${enemy} still lives!`);
+            $(".playerAction").val("");
+            CheckGameOver("miss");
+        }
+    }
     else if (gamestate == "CombatInit" && unarmedCombatWords.some(word => playerAnswer.includes(word))) {
         answer.html(`Your fisticuffs are ineffective on ${enemy}.`)
         $(".playerAction").val("")
