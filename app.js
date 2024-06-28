@@ -531,6 +531,8 @@ function handlePlayerDecision() {
     let playerAnswer = $(".playerAction").val();
     console.log("combat running");
     let unarmedCombatWords = ["hands","fist","fists","punch"];
+
+    //Undead special check
     if (gamestate == "CombatInit" && playerAnswer == "sword" && enemy == "Undead") {
         $(".playerAction").val("");  
         answer.html(`Sword is ineffective on ${enemy}.`);
@@ -549,7 +551,9 @@ function handlePlayerDecision() {
             $(".playerAction").val("");
             CheckGameOver("miss");
         }
-    } else if (gamestate == "CombatInit" && playerAnswer == "sword") {
+    } 
+    // Sword attack
+    else if (gamestate == "CombatInit" && playerAnswer == "sword") {
         $(".diceRoll").html(`You roll ${diceRoll}`);
         $(".playerAction").val("");
         if (diceRoll > 8){
@@ -563,7 +567,9 @@ function handlePlayerDecision() {
             $(".playerAction").val("");
             CheckGameOver("miss");
         }
-    } else if (gamestate == "CombatInit" && playerAnswer == "bow") {
+    } 
+    // Bow attack
+    else if (gamestate == "CombatInit" && playerAnswer == "bow") {
         $(".diceRoll").html(`You roll ${diceRoll}`);
         $(".playerAction").val("");
         if (diceRoll > 8){
@@ -578,6 +584,7 @@ function handlePlayerDecision() {
             CheckGameOver("miss");
         }
     }
+    // Magic attack
     else if (gamestate == "CombatInit" && playerAnswer.includes("magic") || playerAnswer.includes("spell") || playerAnswer.includes("cast")) {
         $(".diceRoll").html(`You roll ${diceRoll}`);
         $(".playerAction").val("");
