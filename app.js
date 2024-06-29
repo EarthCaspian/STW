@@ -43,6 +43,8 @@ function displayIntroText(text, callback) {
 
     typeWriter();
 }
+// Default selection
+let selectedCharacter = 'fighter'; 
 
 //answer initialized
 let answer;
@@ -69,13 +71,24 @@ $(document).ready(function () {
     let introText = "Welcome to Stop the Wizard text adventure game! Your journey begins now...";
     displayIntroText(introText, function() {
         $("#startButton").show();
+        $("#character-selection").show();
+    });
+
+     // Character selection handler
+    $('input[name="character"]').on('change', function() {
+        selectedCharacter = $(this).val();
     });
 });
 
 $("#startButton").on("click", function() {
+
+    // const selectedCharacter = document.querySelector('input[name="character"]:checked').value;
+    // window.characterClass = selectedCharacter;
+
     //hide the intro elements
     $("#startButton").hide();
     $(".introText").hide();
+    $("#character-selection").hide();
 
     //answer is emptied to avoid else condition
     answer.html("");
@@ -95,7 +108,7 @@ $("#startButton").on("click", function() {
     $(".currentSituation").html(`You are ${situation}!`);
     $(".actionCheck").html("What do you do?");
     console.log("page loaded");
-
+    console.log(`character class is ${selectedCharacter}`);
 });
 
 //task list
