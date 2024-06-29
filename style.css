@@ -60,6 +60,25 @@ ul, li {
     z-index: 1; 
 }
 
+#character-selection {
+    position: relative;
+    z-index: 2; /* Ensuring this is higher than the background overlay */
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.mainTextbox::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensure this is lower than #character-selection */
+    pointer-events: none; /* Ensure it does not block clicks */
+}
+
 #startButton {
     position: absolute; 
     top: 60%;
