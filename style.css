@@ -65,7 +65,36 @@ ul, li {
     z-index: 2; /* Ensuring this is higher than the background overlay */
     padding: 10px;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    margin: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+
+#fighter:checked + label,
+#wizard:checked + label,
+#ranger:checked + label {
+    outline: 2px solid yellow;
+}
+
+label[for="fighter"] {
+    background-image: url('img/fighterChar.jpeg');
+}
+
+label[for="wizard"] {
+    background-image: url('img/wizardChar.jpeg');
+}
+
+label[for="ranger"] {
+    background-image: url('img/rangerChar.jpeg');
 }
 
 .mainTextbox::before {
