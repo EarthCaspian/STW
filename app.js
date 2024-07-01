@@ -67,7 +67,7 @@ $(document).ready(function () {
     $(".playerAction").hide();
     $(".playerDecision").hide();
 
-    //introText is initialized and function call
+    //introText is initialized and function call for display, start game button and character selector element
     let introText = "Welcome to Stop the Wizard text adventure game! Your journey begins now...";
     displayIntroText(introText, function() {
         $("#startButton").show();
@@ -81,9 +81,6 @@ $(document).ready(function () {
 });
 
 $("#startButton").on("click", function() {
-
-    // const selectedCharacter = document.querySelector('input[name="character"]:checked').value;
-    // window.characterClass = selectedCharacter;
 
     //hide the intro elements
     $("#startButton").hide();
