@@ -63,7 +63,7 @@ ul, li {
 #character-selection {
     position: relative;
     z-index: 2; /* Ensuring this is higher than the background overlay */
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 10px;
     margin-top: 5px;
 }
@@ -73,9 +73,11 @@ label {
     width: 100px;
     height: 100px;
     background-size: cover;
-    margin: 10px;
+    border-radius: 20%;
+    margin: 5px;
     position: relative;
     cursor: pointer;
+    text-shadow: 2px 2px 2px black;
 }
 
 
