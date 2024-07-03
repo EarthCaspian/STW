@@ -63,7 +63,6 @@ ul, li {
 #character-selection {
     position: relative;
     z-index: 2; /* Ensuring this is higher than the background overlay */
-    /* padding: 10px; */
     border-radius: 10px;
     margin-top: 5px;
 }
