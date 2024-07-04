@@ -581,18 +581,39 @@ function handlePlayerDecision() {
     } 
     // Bow attack
     else if (gamestate == "CombatInit" && playerAnswer == "bow") {
-        $(".diceRoll").html(`You roll ${diceRoll}`);
-        $(".playerAction").val("");
-        if (diceRoll > 8){
-            answer.html(`Your shoot the ${enemy} down with a rain of arrows!. You have vanquished the enemy!`);
+        if(selectedCharacter == "ranger"){
+            $(".diceRoll").html(`You roll ${diceRoll}`);
             $(".playerAction").val("");
-            setTimeout(function(){
-                callback();
-            }, 2000);
-        } else {
-            answer.html(`You miss your attack with the bow, ${enemy} still lives!`);
+            if (diceRoll > 5){
+                answer.html(`You shoot the ${enemy} down with a rain of arrows!. You have vanquished the enemy!`);
+                $(".playerAction").val("");
+                setTimeout(function(){
+                    callback();
+                }, 2000);
+            } else {
+                answer.html(`You miss your attack with the bow, ${enemy} still lives!`);
+                $(".playerAction").val("");
+                CheckGameOver("miss");
+            }
+        }
+        else if(selectedCharacter == "fighter") {
+            $(".diceRoll").html(`You roll ${diceRoll}`);
             $(".playerAction").val("");
-            CheckGameOver("miss");
+            if (diceRoll > 8){
+                answer.html(`You shoot the ${enemy} down with a with a well placed shot!. You have vanquished the enemy!`);
+                $(".playerAction").val("");
+                setTimeout(function(){
+                    callback();
+                }, 2000);
+            } else {
+                answer.html(`You miss your attack with the bow, ${enemy} still lives!`);
+                $(".playerAction").val("");
+                CheckGameOver("miss");
+            }
+        }
+        else {
+            answer.html(`You don't use a bow! You are magician.`);
+            $(".playerAction").val("");
         }
     }
     // Magic attack
@@ -614,6 +635,7 @@ function handlePlayerDecision() {
         }
         else {
             answer.html(`You don't know how to use magic!`);
+            $(".playerAction").val("");
         }
     }
     else if (gamestate == "CombatInit" && unarmedCombatWords.some(word => playerAnswer.includes(word))) {
