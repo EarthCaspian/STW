@@ -335,7 +335,7 @@ function task2(playerAnswer) {
 
     //Enemy images according to location
 
-    //Undead
+    //Undead encounters
     if(enemy == "Undead" && randomLocation == "Castle"){
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/undeadCastle.jpeg')`;
     }
@@ -352,7 +352,7 @@ function task2(playerAnswer) {
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/undeadSwamp.jpeg')`;
     }
 
-    //Goblin
+    //Goblin encounters
     else if (enemy == "Goblin" && randomLocation == "Swamp"){
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/goblinSwamp.jpeg')`;
     }
@@ -369,7 +369,7 @@ function task2(playerAnswer) {
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/goblinMeadow.jpeg')`;
     }
     
-    //Wolf
+    //Wolf encounters
     else if (enemy == "Wolf" && randomLocation == "Swamp"){
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wolfSwamp.jpeg')`;
     }
@@ -386,7 +386,7 @@ function task2(playerAnswer) {
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wolfMeadow.jpeg')`;
     }
 
-    //Rat
+    //Rat encounters
     else if (enemy == "Rat" && randomLocation == "Swamp"){
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/ratSwamp.jpg')`;
     }
@@ -403,7 +403,7 @@ function task2(playerAnswer) {
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/ratMeadow.jpg')`;
     }
 
-    //Halfling
+    //Halfling encounters
     else if (enemy == "Halfling" && randomLocation == "Swamp"){
         mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/halflingSwamp.jpg')`;
     }
@@ -436,6 +436,7 @@ function task3(callback) {
 
     let rerollCounter = 3;
 
+    // function for puzzle solve event 
     function handlePlayerAction(event) {
         if (event.key !== 'Enter') return; // Proceed only when Enter key is pressed
 
@@ -639,9 +640,32 @@ function handlePlayerDecision() {
         }
     }
     else if (gamestate == "CombatInit" && unarmedCombatWords.some(word => playerAnswer.includes(word))) {
-        answer.html(`Your fisticuffs are ineffective on ${enemy}.`)
-        $(".playerAction").val("")
-        CheckGameOver("ineffective")
+        if (selectedCharacter == "wizard"){
+            answer.html(`You are wizard! You are not proficient in hand to hand combat!`)
+            $(".playerAction").val("")
+            CheckGameOver("not proficient")
+        }
+        else if(selectedCharacter == "fighter"){
+            $(".diceRoll").html(`You roll ${diceRoll}`);
+            $(".playerAction").val("");
+            if (diceRoll > 5){
+                answer.html(`You pummel the ${enemy} with your martial might! You have vanquished the enemy!`);
+                $(".playerAction").val("");
+                setTimeout(function(){
+                    callback();
+                }, 2000);
+            }
+            else{
+                answer.html(`You miss your unarmed attack on ${enemy}.`)
+                $(".playerAction").val("")
+                CheckGameOver("miss")
+            }   
+        }
+        else {
+            answer.html(`Your feeble attempt at fisticuffs is ineffective on ${enemy}.`)
+            $(".playerAction").val("")
+            CheckGameOver("ineffective")
+        }
     }
     else {
         answer.html(`I don't understand that, try something else.`)
