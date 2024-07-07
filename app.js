@@ -623,7 +623,7 @@ function handlePlayerDecision() {
             $(".diceRoll").html(`You roll ${diceRoll}`);
             $(".playerAction").val("");
             if (diceRoll > 8){
-                answer.html(`You incinerate the ${enemy} with magic! You have vanquished the enemy!`);
+                answer.html(`You vaporize the ${enemy} with magic! You have vanquished the enemy!`);
                 $(".playerAction").val("");
                 setTimeout(function(){
                     callback();
