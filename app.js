@@ -566,18 +566,37 @@ function handlePlayerDecision() {
     } 
     // Sword attack
     else if (gamestate == "CombatInit" && playerAnswer == "sword") {
-        $(".diceRoll").html(`You roll ${diceRoll}`);
-        $(".playerAction").val("");
-        if (diceRoll > 8){
-            answer.html(`Your strike the ${enemy} down with your sword!. You have vanquished the enemy!`);
+        if(selectedCharacter == "fighter"){
+            $(".diceRoll").html(`You roll ${diceRoll}`);
             $(".playerAction").val("");
-            setTimeout(function(){
-                callback();
-            }, 2000);
-        } else {
-            answer.html(`You miss your attack with the sword, ${enemy} still lives!`);
+            if (diceRoll > 6){
+                answer.html(`Your cut the ${enemy} down with your sword!. You have vanquished the enemy!`);
+                $(".playerAction").val("");
+                setTimeout(function(){
+                    callback();
+                }, 2000);
+            } else {
+                answer.html(`You miss your attack with the sword, ${enemy} still lives!`);
+                $(".playerAction").val("");
+                CheckGameOver("miss");
+            }
+        }
+        else if(selectedCharacter == "ranger"){
+            if (diceRoll > 8){
+                answer.html(`Your manage to bring the ${enemy} down with your sword!. You have vanquished the enemy!`);
+                $(".playerAction").val("");
+                setTimeout(function(){
+                    callback();
+                }, 2000);
+            } else {
+                answer.html(`You miss your attack with the sword, ${enemy} still lives!`);
+                $(".playerAction").val("");
+                CheckGameOver("miss");
+            }
+        }
+        else {
+            answer.html(`You don't use a sword! You are magician.`);
             $(".playerAction").val("");
-            CheckGameOver("miss");
         }
     } 
     // Bow attack
