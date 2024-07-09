@@ -570,7 +570,7 @@ function handlePlayerDecision() {
             $(".diceRoll").html(`You roll ${diceRoll}`);
             $(".playerAction").val("");
             if (diceRoll > 6){
-                answer.html(`Your cut the ${enemy} down with your sword!. You have vanquished the enemy!`);
+                answer.html(`You cut the ${enemy} down with your sword!. You have vanquished the enemy!`);
                 $(".playerAction").val("");
                 setTimeout(function(){
                     callback();
@@ -583,7 +583,7 @@ function handlePlayerDecision() {
         }
         else if(selectedCharacter == "ranger"){
             if (diceRoll > 8){
-                answer.html(`Your manage to bring the ${enemy} down with your sword!. You have vanquished the enemy!`);
+                answer.html(`You manage to bring the ${enemy} down with your sword!. You have vanquished the enemy!`);
                 $(".playerAction").val("");
                 setTimeout(function(){
                     callback();
