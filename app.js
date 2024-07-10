@@ -127,7 +127,7 @@ function task1(callback) {
     let playerAnswer = $(".playerAction").val();
     if (situation == "Stuck") {
         $(".diceRoll").html(`You roll ${diceRoll}`);
-        if (playerAnswer.includes("knife") && diceRoll >= 10) {
+        if (playerAnswer.includes("knife") && diceRoll >= 8) {
             answer.html(`You get yourself out using the knife.`);
             $(".playerAction").val("");
             task1Completed = true;
@@ -135,7 +135,7 @@ function task1(callback) {
                 callback();
             },2000)
         }
-        else if (playerAnswer.includes("knife") && diceRoll < 10) {
+        else if (playerAnswer.includes("knife") && diceRoll < 8) {
             answer.html(`You fumble with the knife to no avail, try again.`);
             $(".playerAction").val("");
         }
@@ -178,6 +178,7 @@ function task1(callback) {
         }
         else if (playerAnswer.includes("back") || playerAnswer.includes("return")) {
             answer.html(`You went back to where you came from.`)
+            $(".playerAction").val("")
         }
         
         else if (playerAnswer.includes("east")) {
@@ -195,8 +196,8 @@ function task1(callback) {
     }
     else if (situation == "Cold") {
         let subTask1completed = false;
-        if (playerAnswer == "rub hands") {
-            answer.html(`You vigorously rub your hands together to no avail!`)
+        if (playerAnswer.includes("hands")) {
+            answer.html(`You vigorously rub your hands together in order to warm up, but to no avail!`)
             $(".playerAction").val("")
         }
         else if (playerAnswer.includes("shelter")) {
@@ -234,6 +235,10 @@ function task1(callback) {
         else if (playerAnswer.includes("fire")) {
             subTask1completed = true;
             answer.html(`You need wood and stones to make a campfire.`)
+            $(".playerAction").val("")
+        }    
+        else if (playerAnswer.includes("naked")) {
+            answer.html(`In your insane momentary thought to go naked, you remember it would do you more harm than good.`)
             $(".playerAction").val("")
         }    
         else if (subTask1completed = true && playerAnswer.includes("wood")) {
