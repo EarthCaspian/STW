@@ -133,7 +133,7 @@ function task1(callback) {
             task1Completed = true;
             setTimeout(function(){
                 callback();
-            },2000)
+            },3000)
         }
         else if (playerAnswer.includes("knife") && diceRoll < 8) {
             answer.html(`You fumble with the knife to no avail, try again.`);
@@ -174,7 +174,7 @@ function task1(callback) {
             task1Completed = true;
             setTimeout(function(){
                 callback();
-            },2000)    
+            },3000)    
         }
         else if (playerAnswer.includes("back") || playerAnswer.includes("return")) {
             answer.html(`You went back to where you came from.`)
@@ -260,7 +260,7 @@ function task1(callback) {
             task1Completed = true;
             setTimeout(function(){
                 callback();
-            },2000)
+            },3000)
         }    
         
         else {
@@ -279,7 +279,7 @@ function task1(callback) {
             task1Completed = true;
             setTimeout(function(){
                 callback();
-            },2000)
+            },3000)
         }
         else if (playerAnswer.includes("help")) {
             answer.html(`You are a lone adventurer.There's nobody to help you.`);
@@ -291,7 +291,7 @@ function task1(callback) {
             task1Completed = true;
             setTimeout(function(){
                 callback();
-            },2000)
+            },3000)
         }
         else if (playerAnswer.includes("yell") || playerAnswer.includes("shout")) {
             answer.html(`You yell out your lungs of fear. Nothing happens.`)
@@ -309,7 +309,7 @@ function task1(callback) {
             task1Completed = true;
             setTimeout(function(){
                 callback();
-            },2000)
+            },3000)
         }
         else if (playerAnswer.includes("ignore")) {
             answer.html(`You try to ignore and push through your lethargy, but to no avail.`);
@@ -477,7 +477,7 @@ function task3(callback) {
                         $(".playerAction").val("").off('keydown', handleSealSequence).focus(); // Remove the event listener
                         setTimeout(function(){
                             callback();
-                        }, 2000);
+                        }, 3000);
                     } else {
                         answer.html(`The sequence seems to be incorrect.`);
                         $(".playerAction").val("").focus();
@@ -562,7 +562,7 @@ function handlePlayerDecision() {
             $(".playerAction").val("");
             setTimeout(function(){
                 callback();
-            }, 2000);
+            }, 3000);
         } else {
             answer.html(`Your attack with the mace misses, ${enemy} still lives!`);
             $(".playerAction").val("");
@@ -579,7 +579,7 @@ function handlePlayerDecision() {
                 $(".playerAction").val("");
                 setTimeout(function(){
                     callback();
-                }, 2000);
+                }, 3000);
             } else {
                 answer.html(`You miss your attack with the sword, ${enemy} still lives!`);
                 $(".playerAction").val("");
@@ -592,7 +592,7 @@ function handlePlayerDecision() {
                 $(".playerAction").val("");
                 setTimeout(function(){
                     callback();
-                }, 2000);
+                }, 3000);
             } else {
                 answer.html(`You miss your attack with the sword, ${enemy} still lives!`);
                 $(".playerAction").val("");
@@ -614,7 +614,7 @@ function handlePlayerDecision() {
                 $(".playerAction").val("");
                 setTimeout(function(){
                     callback();
-                }, 2000);
+                }, 3000);
             } else {
                 answer.html(`You miss your attack with the bow, ${enemy} still lives!`);
                 $(".playerAction").val("");
@@ -629,7 +629,7 @@ function handlePlayerDecision() {
                 $(".playerAction").val("");
                 setTimeout(function(){
                     callback();
-                }, 2000);
+                }, 3000);
             } else {
                 answer.html(`You miss your attack with the bow, ${enemy} still lives!`);
                 $(".playerAction").val("");
@@ -651,7 +651,7 @@ function handlePlayerDecision() {
                 $(".playerAction").val("");
                 setTimeout(function(){
                     callback();
-                }, 2000);
+                }, 3000);
             } else {
                 answer.html(`You miss your magic attack, ${enemy} still lives!`);
                 $(".playerAction").val("");
@@ -677,7 +677,7 @@ function handlePlayerDecision() {
                 $(".playerAction").val("");
                 setTimeout(function(){
                     callback();
-                }, 2000);
+                }, 3000);
             }
             else{
                 answer.html(`You miss your unarmed attack on ${enemy}.`)
