@@ -537,6 +537,30 @@ function handlePlayerDecision() {
       answer.html(`With what?`);
       $(".playerAction").val("");
     }
+    //Run away
+    else if (playerAnswer.includes("run") || playerAnswer.includes("escape")){
+        if (selectedCharacter == "ranger"){
+            $(".diceRoll").html(`You roll ${diceRoll}`);
+            $(".playerAction").val("");
+            if (diceRoll > 10){
+                answer.html(`Being a swift ranger allowed you to quickly get away!`);
+                $(".playerAction").val("");
+                setTimeout(function(){
+                    task3();
+                }, 3000);
+            }
+            else {
+                answer.html(`You stumble and fall down while trying to run away!`);
+                $(".playerAction").val("");
+                CheckGameOver("stumble");
+            }
+        }
+        else {
+            answer.html(`You stumble and fall down while trying to run away!`);
+            $(".playerAction").val("");
+            CheckGameOver("stumble");
+        }
+    }
   } 
   }
 
@@ -663,6 +687,7 @@ function handlePlayerDecision() {
             $(".playerAction").val("");
         }
     }
+    // Unarmed attack
     else if (gamestate == "CombatInit" && unarmedCombatWords.some(word => playerAnswer.includes(word))) {
         if (selectedCharacter == "wizard"){
             answer.html(`You are wizard! You are not proficient in hand to hand combat!`)
@@ -686,11 +711,12 @@ function handlePlayerDecision() {
             }   
         }
         else {
-            answer.html(`Your feeble attempt at fisticuffs is ineffective on ${enemy}.`)
-            $(".playerAction").val("")
-            CheckGameOver("ineffective")
+            answer.html(`Your feeble attempt at fisticuffs is ineffective on ${enemy}.`);
+            $(".playerAction").val("");
+            CheckGameOver("ineffective");
         }
     }
+    
     else {
         answer.html(`I don't understand that, try something else.`)
     }
