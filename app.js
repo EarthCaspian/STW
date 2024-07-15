@@ -561,6 +561,29 @@ function handlePlayerDecision() {
             CheckGameOver("stumble");
         }
     }
+    //Teleport away
+    else if(playerAnswer.includes("teleport") || playerAnswer.includes("blink")) {
+        if (selectedCharacter == "wizard") {
+            $(".diceRoll").html(`You roll ${diceRoll}`);
+            $(".playerAction").val("");
+            if (diceRoll > 10){
+                answer.html(`You quickly teleport away from danger!`);
+                $(".playerAction").val("");
+                setTimeout(function(){
+                    task3();
+                }, 3000);
+            }
+            else {
+                answer.html(`You fumble your words trying to cast magic!`);
+                $(".playerAction").val("");
+                CheckGameOver("fumble");
+            }
+        }
+        else{
+            answer.html(`You don't know how to cast magic!`);
+            $(".playerAction").val("");
+        }
+    }
   } 
   }
 
