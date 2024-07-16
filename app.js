@@ -584,6 +584,29 @@ function handlePlayerDecision() {
             $(".playerAction").val("");
         }
     }
+    //Trap away
+    else if(playerAnswer.includes("trap")){
+        if(selectedCharacter == "ranger"){
+            $(".diceRoll").html(`You roll ${diceRoll}`);
+            $(".playerAction").val("");
+            if (diceRoll > 10){
+                answer.html(`You set a trap and slowly move away, as ${enemy} approaches, it gets caught in the trap, you escape!!`);
+                $(".playerAction").val("");
+                setTimeout(function(){
+                    task3();
+                }, 3000);
+            }
+            else {
+                answer.html(`You could not set the trap in time!`);
+                $(".playerAction").val("");
+                CheckGameOver("could not");
+            }
+        }
+        else{
+            answer.html(`You don't know how to set traps!`);
+            $(".playerAction").val("");
+        }
+    }
   } 
   }
 
