@@ -762,7 +762,11 @@ function handlePlayerDecision() {
             CheckGameOver("ineffective");
         }
     }
-    
+    else if(playerAnswer.includes("run") || playerAnswer.includes("escape")){
+        answer.html(`You are in attack range right now, you can't run away and escape anymore!`);
+        $(".playerAction").val("");
+        CheckGameOver("can't run away");
+    }
     else {
         answer.html(`I don't understand that, try something else.`)
     }
