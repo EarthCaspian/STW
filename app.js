@@ -50,6 +50,7 @@ let selectedCharacter = 'fighter';
 //answer initialized
 let answer;
 
+//document ready function
 $(document).ready(function () {
 
     //Intro bg image
@@ -81,6 +82,7 @@ $(document).ready(function () {
     });
 });
 
+//start button event handler
 $("#startButton").on("click", function() {
 
     //hide the intro elements
@@ -762,6 +764,7 @@ function handlePlayerDecision() {
             CheckGameOver("ineffective");
         }
     }
+    //attempt to flee from combat
     else if(playerAnswer.includes("run") || playerAnswer.includes("escape")){
         answer.html(`You are in attack range right now, you can't run away and escape anymore!`);
         $(".playerAction").val("");
