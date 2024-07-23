@@ -759,9 +759,20 @@ function handlePlayerDecision() {
             }   
         }
         else {
-            answer.html(`Your feeble attempt at fisticuffs is ineffective on ${enemy}.`);
+            $(".diceRoll").html(`You roll ${diceRoll}`);
             $(".playerAction").val("");
-            CheckGameOver("ineffective");
+            if (diceRoll > 10){
+                answer.html(`You swiftly take out the ${enemy} with your unarmed skills! You have vanquished the enemy!`);
+                $(".playerAction").val("");
+                setTimeout(function(){
+                    callback();
+                }, 3000);
+            }
+            else{
+                answer.html(`You miss your unarmed attack on ${enemy}.`)
+                $(".playerAction").val("")
+                CheckGameOver("miss")
+            } 
         }
     }
     //attempt to flee from combat
