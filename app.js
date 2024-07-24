@@ -44,6 +44,18 @@ function displayIntroText(text, callback) {
     typeWriter();
 }
 
+// Function to add character-specific situations
+function addCharacterSituations(characterClass) {
+    if (characterClass === "wizard") {
+        situations.push("Drained");
+    } else if (characterClass === "fighter") {
+        situations.push("Wounded");
+    } else if (characterClass === "ranger") {
+        situations.push("Exhausted");
+    }
+}
+
+
 // character initialized, default fighter
 let selectedCharacter = 'fighter'; 
 
@@ -90,6 +102,9 @@ $("#startButton").on("click", function() {
     $(".introText").hide();
     $("#character-selection").hide();
 
+    //Function call for adding situations
+    addCharacterSituations(selectedCharacter);
+
     //answer is emptied to avoid else condition
     answer.html("");
 
@@ -109,6 +124,7 @@ $("#startButton").on("click", function() {
     $(".actionCheck").html("What do you do?");
     console.log("page loaded");
     console.log(`character class is ${selectedCharacter}`);
+    console.log(`Situations are ${situations}`);
 });
 
 //task list
