@@ -60,6 +60,8 @@ ul, li {
     z-index: 1; 
 }
 
+/* character selection */
+
 #character-selection {
     position: relative;
     z-index: 2; /* Ensuring this is higher than the background overlay */
@@ -108,6 +110,8 @@ label[for="ranger"] {
     z-index: 1; /* Ensure this is lower than #character-selection */
     pointer-events: none; /* Ensure it does not block clicks */
 }
+
+/* end character selection */
 
 #startButton {
     position: absolute; 
