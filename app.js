@@ -553,9 +553,9 @@ function handlePlayerDecision() {
                 }, 3000);
             }
             else {
-                answer.html(`You stumble and fall down while trying to run away!`);
+                answer.html(`You hesitate and fall down while trying to run away!`);
                 $(".playerAction").val("");
-                CheckGameOver("stumble");
+                CheckGameOver("hesitate");
             }
         }
         else {
