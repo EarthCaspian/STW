@@ -641,7 +641,28 @@ function handlePlayerDecision() {
             $(".playerAction").val("");
             CheckGameOver("miss");
         }
+        
     } 
+    else if(gamestate == "CombatInit" && selectedCharacter=="wizard" && playerAnswer.includes("lightning") && enemy == "Undead"){
+        $(".diceRoll").html(`You roll ${diceRoll}`);
+        $(".playerAction").val("");
+        if (diceRoll >= 10){
+            answer.html(`Your lightning spell is extremely effective on the ${enemy}! You have vanquished the enemy!`);
+            $(".playerAction").val("");
+            setTimeout(function(){
+                callback();
+            }, 3000);
+        } else {
+            answer.html(`Your miss your lightning spell, ${enemy} still lives!`);
+            $(".playerAction").val("");
+            CheckGameOver("miss");
+        }
+    }
+    else if(gamestate == "CombatInit" && selectedCharacter=="wizard" && !playerAnswer.includes("lightning") && enemy == "Undead"){
+        $(".playerAction").val("");  
+        answer.html(`Your spell is ineffective on the ${enemy}.`);
+        CheckGameOver("ineffective");
+    }
     // Sword attack
     else if (gamestate == "CombatInit" && playerAnswer == "sword") {
         if(selectedCharacter == "fighter"){
