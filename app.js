@@ -653,7 +653,7 @@ function handlePlayerDecision() {
                 callback();
             }, 3000);
         } else {
-            answer.html(`Your miss your lightning spell, ${enemy} still lives!`);
+            answer.html(`You miss your lightning spell, ${enemy} still lives!`);
             $(".playerAction").val("");
             CheckGameOver("miss");
         }
@@ -661,6 +661,26 @@ function handlePlayerDecision() {
     else if(gamestate == "CombatInit" && selectedCharacter=="wizard" && !playerAnswer.includes("lightning") && enemy == "Undead"){
         $(".playerAction").val("");  
         answer.html(`Your spell is ineffective on the ${enemy}.`);
+        CheckGameOver("ineffective");
+    }
+    else if(gamestate == "CombatInit" && selectedCharacter=="ranger" && playerAnswer.includes("explosive") && enemy == "Undead"){
+        $(".diceRoll").html(`You roll ${diceRoll}`);
+        $(".playerAction").val("");
+        if (diceRoll >= 10){
+            answer.html(`Your crafty use of explosives is extremely effective on the ${enemy}! You have vanquished the enemy!`);
+            $(".playerAction").val("");
+            setTimeout(function(){
+                callback();
+            }, 3000);
+        } else {
+            answer.html(`Your explosives malfunction, ${enemy} still lives!`);
+            $(".playerAction").val("");
+            CheckGameOver("malfunction");
+        }
+    }
+    else if(gamestate == "CombatInit" && selectedCharacter=="ranger" && !playerAnswer.includes("explosive") && enemy == "Undead"){
+        $(".playerAction").val("");  
+        answer.html(`Your tricks is ineffective on the ${enemy}.`);
         CheckGameOver("ineffective");
     }
     // Sword attack
