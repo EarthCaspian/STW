@@ -819,7 +819,7 @@ function handlePlayerDecision() {
     }
     //attempt to flee from combat
     else if(playerAnswer.includes("run") || playerAnswer.includes("escape")){
-        answer.html(`You are in attack range right now, you can't run away and escape anymore!`);
+        answer.html(`You are in combat range right now, you can't run away and escape anymore!`);
         $(".playerAction").val("");
         CheckGameOver("can't run away");
     }
