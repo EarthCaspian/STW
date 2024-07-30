@@ -273,7 +273,7 @@ function task1(callback) {
     }   
     else if (situation == "Scared") {
         if (playerAnswer == "stop") {
-            answer.html(`You decision to stop being scared doesn't seem to work.`);
+            answer.html(`You decision to stop being scared doesn't seem to be working.`);
             $(".playerAction").val("")
         }
         else if (playerAnswer == "meditate") {
@@ -285,7 +285,7 @@ function task1(callback) {
             },3000)
         }
         else if (playerAnswer.includes("help")) {
-            answer.html(`You are a lone adventurer.There's nobody to help you.`);
+            answer.html(`You are a lone adventurer.There's nobody around to help you.`);
             $(".playerAction").val("")
         }
         else if (playerAnswer.includes("breath")) {
@@ -296,7 +296,7 @@ function task1(callback) {
                 callback();
             },3000)
         }
-        else if (playerAnswer.includes("yell") || playerAnswer.includes("shout")) {
+        else if (playerAnswer.includes("yell")) {
             answer.html(`You yell out your lungs of fear. Nothing happens.`)
             $(".playerAction").val("")
         }
@@ -317,6 +317,14 @@ function task1(callback) {
         else if (playerAnswer.includes("ignore")) {
             answer.html(`You try to ignore and push through your lethargy, but to no avail.`);
             $(".playerAction").val("");
+        }
+        else if (playerAnswer.includes("camp")) {
+            answer.html(`You quickly prepare a camp and have a rest.`);
+            $(".playerAction").val("")
+            task1Completed = true;
+            setTimeout(function(){
+                callback();
+            },3000)
         }
         else if (playerAnswer.includes("sleep")) {
             answer.html(`You are not in a safe area, you cannot sleep. `)
