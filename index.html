@@ -50,15 +50,25 @@
               <div class="introText"></div>
               <div id="character-selection" style="display:none;">
                 <h2>Pick your Character Class</h2>
-                <label for="fighter">
+                <div class="characterbox">
+                  <label for="fighter">
                     <input type="radio" id="fighter" name="character" value="fighter" checked> Fighter
                 </label>
-                <label for="wizard">
+                <span style="font-size: small;">Strong with close combat fighting, can use a variety of weapons</span>
+                </div>
+                <div class="characterbox">
+                  <label for="wizard">
                     <input type="radio" id="wizard" name="character" value="wizard"> Wizard
-                </label>
+                  </label>
+                  <span style="font-size: small;">Master of the arcane arts, can use magic to solve problems</span>
+                </div>
+                <div class="characterbox">
                 <label for="ranger">
                     <input type="radio" id="ranger" name="character" value="ranger"> Ranger
                 </label>
+                <span style="font-size: small;">Skilled with the bow, sword and using traps to survive</span>
+                </div>
+                
             </div>
               <button id="startButton" class="btn btn-dark" style="display:none;">Start Game</button>
                 <h2 class="currentLocation"></h2>
