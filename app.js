@@ -70,7 +70,7 @@ $(document).ready(function () {
     $(".playerDecision").hide();
 
     //introText is initialized and function call for display, start game button and character selector element
-    let introText = "Welcome to Stop the Wizard text adventure game! Your journey begins now...";
+    let introText = "Welcome to Stop the Wizard text adventure game! The land is plagued by a dark wizard, as a lone adventurer, you are tasked with stopping the wizard, your journey begins now...";
     displayIntroText(introText, function() {
         $("#startButton").show();
         $("#character-selection").show();
