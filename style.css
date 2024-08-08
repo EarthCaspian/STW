@@ -58,6 +58,7 @@ ul, li {
     /* background-color: rgba(0, 0, 0, 0.5);  */
     color: white;
     z-index: 1; 
+    padding: 15px;
 }
 
 /* character selection */
