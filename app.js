@@ -485,6 +485,7 @@ function task3(callback) {
 
                     if (sequence === "right,left,up") {
                         answer.html(`The veil of shadow breaks, you find yourself teleported to a wizard's tower.`);
+                        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wizTower.jpeg')`;
                         $(".playerAction").val("").off('keydown', handleSealSequence).focus(); // Remove the event listener
                         setTimeout(function(){
                             callback();
