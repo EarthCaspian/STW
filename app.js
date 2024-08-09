@@ -265,6 +265,14 @@ function task1(callback) {
                 callback();
             },3000)
         }    
+        else if (selectedCharacter == "wizard" && playerAnswer.includes("magic") || playerAnswer.includes("spell")) {
+            answer.html(`You dry your clothes with magical energy.`);
+            $(".playerAction").val("");
+            task1Completed = true;
+            setTimeout(function(){
+                callback();
+            },3000)
+        }    
         
         else {
             answer.html(`I don't understand that, try something else.`);
