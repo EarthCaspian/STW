@@ -305,8 +305,18 @@ function task1(callback) {
             },3000)
         }
         else if (playerAnswer.includes("yell")) {
-            answer.html(`You yell out your lungs of fear. Nothing happens.`)
-            $(".playerAction").val("")
+            if(selectedCharacter=="fighter"){
+                answer.html(`You let out a guttural scream, adrenaline pumps through your veins, it works.`);
+                $(".playerAction").val("");
+                task1Completed = true;
+                setTimeout(function(){
+                    callback();
+                },3000)
+            }
+            else {
+                answer.html(`You yell out your lungs of fear. Nothing happens.`)
+                $(".playerAction").val("")
+            }
         }
         else {
             answer.html(`I don't understand that, try something else.`)
