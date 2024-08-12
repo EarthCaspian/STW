@@ -285,7 +285,21 @@ function task1(callback) {
             $(".playerAction").val("")
         }
         else if (playerAnswer == "meditate") {
-            answer.html(`You meditate until your fear dissipates.`);
+            if(selectedCharacter=="wizard"){
+                answer.html(`You meditate until your fear dissipates.`);
+                $(".playerAction").val("");
+                task1Completed = true;
+                setTimeout(function(){
+                    callback();
+                },3000) 
+            }
+            else{
+                answer.html(`You don't know how to meditate.`);
+                $(".playerAction").val("")
+            }
+        }
+        else if (playerAnswer.includes("calm")) {
+            answer.html(`You try and motivate yourself to calm down, slowly, but it works.`);
             $(".playerAction").val("");
             task1Completed = true;
             setTimeout(function(){
