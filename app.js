@@ -138,6 +138,20 @@ function task1(callback) {
                 callback();
             },3000)
         }
+        else if (playerAnswer.includes("magic") || playerAnswer.includes("spell") && selectedCharacter=="wizard") {
+            if(diceRoll > 8){
+                answer.html(`You get yourself out of the bind with the mystical ways of magic.`);
+                $(".playerAction").val("");
+                task1Completed = true;
+                setTimeout(function(){
+                    callback();
+                },3000) 
+            }
+            else{
+                answer.html(`Your magical skills failed you this time, you remain stuck.`);
+                $(".playerAction").val("");
+            }
+        }
         else if (playerAnswer.includes("knife") && diceRoll < 8) {
             answer.html(`You fumble with the knife to no avail, try again.`);
             $(".playerAction").val("");
