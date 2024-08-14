@@ -379,7 +379,7 @@ function task1(callback) {
             },3000)
         }
         else if (playerAnswer.includes("sleep")) {
-            answer.html(`You are not in a safe area, you cannot sleep. `)
+            answer.html(`You cannot sleep while out in the open. `)
             $(".playerAction").val("")
         }
         else {
