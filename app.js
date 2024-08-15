@@ -227,6 +227,20 @@ function task1(callback) {
             answer.html(`You look around for a while, there doesn't seem to be any place to get inside.`)
             $(".playerAction").val("")
         }
+        else if (playerAnswer.includes("magic") || playerAnswer.includes("spell")) {
+            if(selectedCharacter=="wizard"){
+                answer.html(`You use your arcane knowledge to create an aura of heat around you, you now feel warm.`);
+                $(".playerAction").val("");
+                task1Completed = true;
+                setTimeout(function(){
+                    callback();
+                },3000) 
+            }
+            else{
+                answer.html(`You don't know how to use magic.`);
+                $(".playerAction").val("")
+            }
+        }
         else if (playerAnswer.includes("fire")) {
             subTask1completed = true;
             answer.html(`You need wood and stones to make a campfire.`)
