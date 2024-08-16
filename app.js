@@ -191,6 +191,16 @@ function task1(callback) {
             subTask1completed = true
         
         }
+        else if (playerAnswer.includes("track") || playerAnswer.includes("scout")) {
+            if(selectedCharacter=="ranger"){
+                $(".playerAction").val("")
+                answer.html(`Your ranger skills tell you to head west.`)
+            }
+            else{
+                answer.html(`You don't know how to read tracks for your lack of scouting skills.`)
+                $(".playerAction").val("")
+            }
+        }
         else if (subTask1completed = true && playerAnswer.includes("check") || playerAnswer.includes("go")) {
             $(".playerAction").val("")
             answer.html(`You approach the light source.`)
