@@ -210,7 +210,7 @@ function task1(callback) {
             },3000)    
         }
         else if (playerAnswer.includes("back") || playerAnswer.includes("return")) {
-            answer.html(`You went back to where you came from.`)
+            answer.html(`You went back to where you came from. You're not sure what that accomplished.`)
             $(".playerAction").val("")
         }
         
@@ -395,12 +395,18 @@ function task1(callback) {
             $(".playerAction").val("");
         }
         else if (playerAnswer.includes("camp")) {
-            answer.html(`You quickly prepare a camp and have a rest.`);
+            if(selectedCharacter=="ranger"){
+                answer.html(`You quickly prepare a camp and have a rest.`);
             $(".playerAction").val("")
             task1Completed = true;
             setTimeout(function(){
                 callback();
             },3000)
+            }
+            else {
+                answer.html(`You do not have camp supplies.`)
+                $(".playerAction").val("");
+            }
         }
         else if (playerAnswer.includes("sleep")) {
             answer.html(`You cannot sleep while out in the open. `)
