@@ -404,7 +404,7 @@ function task1(callback) {
             },3000)
             }
             else {
-                answer.html(`You do not have camp supplies.`)
+                answer.html(`You do not have camp supplies. Only Rangers carry them.`)
                 $(".playerAction").val("");
             }
         }
