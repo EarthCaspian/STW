@@ -391,8 +391,19 @@ function task1(callback) {
             },3000)
         }
         else if (playerAnswer.includes("ignore")) {
-            answer.html(`You try to ignore and push through your lethargy, but to no avail.`);
-            $(".playerAction").val("");
+            if(selectedCharacter=="fighter"){
+                answer.html(`You are used to lethargy as a fighter, you ignore the effects of being tired.`);
+                $(".playerAction").val("")
+                task1Completed = true;
+                setTimeout(function(){
+                    callback();
+                },3000)
+            }
+            else{
+                answer.html(`You try to ignore and push through your lethargy, but to no avail.`);
+                $(".playerAction").val("");
+            }
+            
         }
         else if (playerAnswer.includes("camp")) {
             if(selectedCharacter=="ranger"){
