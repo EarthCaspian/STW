@@ -162,9 +162,19 @@ function task1(callback) {
             answer.html(`You fumble with the knife to no avail, try again.`);
             $(".playerAction").val("");
         }
-        else if (playerAnswer.includes("hands")) {
-            answer.html(`You need to use some sort of tool!`)
-            $(".playerAction").val("")
+        else if (playerAnswer.includes("hands") || playerAnswer.includes("force") || playerAnswer.includes("strength")) {
+            if (selectedCharacter=="fighter"){
+                answer.html(`You rip apart your binds with your incredible strength!`)
+                $(".playerAction").val("");
+                task1Completed = true;
+                setTimeout(function(){
+                    callback();
+                },3000) 
+            }
+            else{
+                answer.html(`You need to use some sort of tool!`)
+                $(".playerAction").val("")
+            }
         }
         else if (playerAnswer.includes("struggle") || playerAnswer.includes("wiggle")) {
             answer.html(`You wiggle around for a bit, nothing happens.`)
