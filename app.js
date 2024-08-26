@@ -162,6 +162,20 @@ function task1(callback) {
             answer.html(`You fumble with the knife to no avail, try again.`);
             $(".playerAction").val("");
         }
+        else if (playerAnswer.includes("slip")) {
+            if (selectedCharacter=="ranger"){
+                answer.html(`You slip out of your bind with using your dexterity!`)
+                $(".playerAction").val("");
+                task1Completed = true;
+                setTimeout(function(){
+                    callback();
+                },3000) 
+            }
+            else{
+                answer.html(`You cannot slip out of your bind!`)
+                $(".playerAction").val("")
+            }
+        }
         else if (playerAnswer.includes("hands") || playerAnswer.includes("force") || playerAnswer.includes("strength")) {
             if (selectedCharacter=="fighter"){
                 answer.html(`You rip apart your binds with your incredible strength!`)
