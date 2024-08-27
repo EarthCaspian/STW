@@ -215,6 +215,16 @@ function task1(callback) {
             subTask1completed = true
         
         }
+        else if (playerAnswer.includes("spell") || playerAnswer.includes("magic")) {
+            if(selectedCharacter=="wizard"){
+                $(".playerAction").val("")
+                answer.html(`Your searching spell guides you to head west.`)
+            }
+            else{
+                answer.html(`You don't know how to use magic!`)
+                $(".playerAction").val("")
+            }
+        }
         else if (playerAnswer.includes("track") || playerAnswer.includes("scout")) {
             if(selectedCharacter=="ranger"){
                 $(".playerAction").val("")
