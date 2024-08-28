@@ -218,7 +218,7 @@ function task1(callback) {
         else if (playerAnswer.includes("spell") || playerAnswer.includes("magic")) {
             if(selectedCharacter=="wizard"){
                 $(".playerAction").val("")
-                answer.html(`Your searching spell guides you to head west.`)
+                answer.html(`You cast a searching spell which guides you to head west.`)
             }
             else{
                 answer.html(`You don't know how to use magic!`)
@@ -343,15 +343,34 @@ function task1(callback) {
                 callback();
             },3000)
         }    
-        else if (selectedCharacter == "wizard" && playerAnswer.includes("magic") || playerAnswer.includes("spell")) {
-            answer.html(`You dry your clothes with magical energy.`);
-            $(".playerAction").val("");
-            task1Completed = true;
-            setTimeout(function(){
-                callback();
-            },3000)
+        else if (playerAnswer.includes("magic") || playerAnswer.includes("spell")) {
+            if(selectedCharacter == "wizard"){
+                answer.html(`You heat up and dry your clothes with magical energy.`);
+                $(".playerAction").val("");
+                task1Completed = true;
+                setTimeout(function(){
+                    callback();
+                },3000)
+            }
+            else {
+                answer.html(`You don't know how to use magic!`);
+                $(".playerAction").val("");
+            }
         }    
-        
+        else if (playerAnswer.includes("extra") || playerAnswer.includes("switch")) {
+            if(selectedCharacter == "ranger"){
+                answer.html(`You have an extra set of clothes in your trusty toolkit. You're good to go.`);
+                $(".playerAction").val("");
+                task1Completed = true;
+                setTimeout(function(){
+                    callback();
+                },3000)
+            }
+            else{
+                answer.html(`You don't have anything to change with, you stay wet.`);
+                $(".playerAction").val("");
+            }
+        }
         else {
             answer.html(`I don't understand that, try something else.`);
             $(".playerAction").val("")
