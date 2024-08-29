@@ -415,7 +415,7 @@ function task1(callback) {
                 callback();
             },3000)
         }
-        else if (playerAnswer.includes("yell")) {
+        else if (playerAnswer.includes("yell") || playerAnswer.includes("shout") || playerAnswer.includes("scream")) {
             if(selectedCharacter=="fighter"){
                 answer.html(`You let out a guttural scream, adrenaline pumps through your veins, it works.`);
                 $(".playerAction").val("");
