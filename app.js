@@ -20,6 +20,7 @@ console.log(diceRoll);
 
 //!Game Over Status
 let gameOverCounter = 0;
+$(".gameOver").html(`Mistakes made : ${gameOverCounter} ...for now.`);
 
 //!Random Area Image Change
 let mainTextbox = document.querySelector(".mainTextbox");
@@ -68,6 +69,7 @@ $(document).ready(function () {
     $(".inputNbutton").hide();
     $(".playerAction").hide();
     $(".playerDecision").hide();
+    $(".gameOver").hide();
 
     //introText is initialized and function call for display, start game button and character selector element
     let introText = "Welcome to Stop the Wizard text adventure game! The land is plagued by a dark wizard, as a lone adventurer, you are tasked with stopping the wizard, your journey begins now...";
@@ -101,6 +103,7 @@ $("#startButton").on("click", function() {
     $(".inputNbutton").show();
     $(".playerAction").show();
     $(".playerDecision").show();
+    $(".gameOver").show();
     
     // Set initial game state
     mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/${randomLocation}.png')`;
@@ -407,7 +410,7 @@ function task1(callback) {
             answer.html(`You are a lone adventurer.There's nobody around to help you.`);
             $(".playerAction").val("")
         }
-        else if (playerAnswer.includes("breath")) {
+        else if (playerAnswer.includes("breath") || playerAnswer.includes("deep")) {
             answer.html(`You take deep breaths to calm down. It works.`);
             $(".playerAction").val("");
             task1Completed = true;
@@ -988,6 +991,7 @@ function handlePlayerDecision() {
 function CheckGameOver(stringToCheck) {
     if (answer.text().includes(stringToCheck)) {
         gameOverCounter++;
+        $(".gameOver").html(`Mistakes made : ${gameOverCounter}`);
         if (gameOverCounter > 2) {
             combatGameOver();
         }
