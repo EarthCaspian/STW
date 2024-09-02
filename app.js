@@ -20,7 +20,7 @@ console.log(diceRoll);
 
 //!Game Over Status
 let gameOverCounter = 0;
-$(".gameOver").html(`Mistakes made : ${gameOverCounter} ...for now.`);
+$(".gameOver").html(`${gameOverCounter} mistakes made. For now...`);
 
 //!Random Area Image Change
 let mainTextbox = document.querySelector(".mainTextbox");
@@ -991,7 +991,7 @@ function handlePlayerDecision() {
 function CheckGameOver(stringToCheck) {
     if (answer.text().includes(stringToCheck)) {
         gameOverCounter++;
-        $(".gameOver").html(`Mistakes made : ${gameOverCounter}`);
+        $(".gameOver").html(`${gameOverCounter} mistakes made.`);
         if (gameOverCounter > 2) {
             combatGameOver();
         }
