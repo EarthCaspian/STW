@@ -322,8 +322,9 @@ function task1(callback) {
             $(".playerAction").val("")
         }    
         else if (playerAnswer.includes("naked")) {
-            answer.html(`In your insane momentary thought to go naked, you remember it would do you more harm than good.`)
-            $(".playerAction").val("")
+            answer.html(`You decide to go naked in an insane moment, you quickly feel the frostbite.`)
+            $(".playerAction").val("");
+            CheckGameOver("frostbite");
         }    
         else if (subTask1completed = true && playerAnswer.includes("wood")) {
                 answer.html(`You gather some wood. Some stones would go together with this to make a campfire.`)
