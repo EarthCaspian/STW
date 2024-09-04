@@ -759,9 +759,9 @@ function handlePlayerDecision() {
                 }, 3000);
             }
             else {
-                answer.html(`You could not set the trap in time!`);
+                answer.html(`You couldn't set the trap in time!`);
                 $(".playerAction").val("");
-                CheckGameOver("could not");
+                CheckGameOver("couldn't");
             }
         }
         else{
@@ -832,9 +832,9 @@ function handlePlayerDecision() {
                 callback();
             }, 3000);
         } else {
-            answer.html(`Your explosives malfunction, ${enemy} still lives!`);
+            answer.html(`Your explosives misfire, ${enemy} still lives!`);
             $(".playerAction").val("");
-            CheckGameOver("malfunction");
+            CheckGameOver("misfire");
         }
     }
     else if(gamestate == "CombatInit" && selectedCharacter=="ranger" && !playerAnswer.includes("explosive") && enemy == "Undead"){
