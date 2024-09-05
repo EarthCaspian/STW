@@ -167,7 +167,7 @@ function task1(callback) {
         }
         else if (playerAnswer.includes("slip")) {
             if (selectedCharacter=="ranger"){
-                answer.html(`You slip out of your bind with using your dexterity!`)
+                answer.html(`You slip out of your bind with dexterous moves!`)
                 $(".playerAction").val("");
                 task1Completed = true;
                 setTimeout(function(){
@@ -256,7 +256,7 @@ function task1(callback) {
             $(".playerAction").val("")
         }
         else if (playerAnswer.includes("south")) {
-            answer.html(`You went south. You hear the distant sound of a water source. This might be good.`)
+            answer.html(`You went south. Your way is blocked by a river, you realise you cannot go further here.`)
             $(".playerAction").val("")
         }
         else {
@@ -267,7 +267,7 @@ function task1(callback) {
     else if (situation == "Cold") {
         let subTask1completed = false;
         if (playerAnswer.includes("hands")) {
-            answer.html(`You vigorously rub your hands together in order to warm up, but to no avail!`)
+            answer.html(`You vigorously rub your hands together in order to warm up, but its not enough to warm up!`)
             $(".playerAction").val("")
         }
         else if (playerAnswer.includes("shelter")) {
@@ -978,7 +978,7 @@ function handlePlayerDecision() {
     }
     //attempt to flee from combat
     else if(playerAnswer.includes("run") || playerAnswer.includes("escape")){
-        answer.html(`You are in combat range right now, you can't run away and escape anymore!`);
+        answer.html(`You are locked in combat right now, you can't run away and escape anymore!`);
         $(".playerAction").val("");
         CheckGameOver("can't run away");
     }
@@ -1001,7 +1001,7 @@ function CheckGameOver(stringToCheck) {
 
 function combatGameOver() {
     mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/combatDefeat.jpeg')`;
-    answer.html(`${enemy} has bested you and you have died. Try Again.`)
+    answer.html(`${enemy} has bested you and you have died. Game Over.`)
     $(".playerAction").val("");
     gameOverCounter = 0;
 }
