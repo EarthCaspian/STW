@@ -266,7 +266,7 @@ function task1(callback) {
     }
     else if (situation == "Cold") {
         let subTask1completed = false;
-        if (playerAnswer.includes("hands")) {
+        if (playerAnswer.includes("hands") || playerAnswer.includes("rub")) {
             answer.html(`You vigorously rub your hands together in order to warm up, but its not enough to warm up!`)
             $(".playerAction").val("")
         }
