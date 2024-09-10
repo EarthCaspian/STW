@@ -157,7 +157,7 @@ function task1(callback) {
                 }
             }
             else{
-                answer.html(`You don't know how to use magic!`);
+                answer.html(`You don't know anything about magic!`);
                 $(".playerAction").val("");
             }
         }
@@ -224,7 +224,7 @@ function task1(callback) {
                 answer.html(`You cast a searching spell which guides you to head west.`)
             }
             else{
-                answer.html(`You don't know how to use magic!`)
+                answer.html(`You don't know anything about magic!`)
                 $(".playerAction").val("")
             }
         }
@@ -284,7 +284,7 @@ function task1(callback) {
                 },3000) 
             }
             else{
-                answer.html(`You don't know how to use magic.`);
+                answer.html(`You don't know anything about magic!`);
                 $(".playerAction").val("")
             }
         }
@@ -357,7 +357,7 @@ function task1(callback) {
                 },3000)
             }
             else {
-                answer.html(`You don't know how to use magic!`);
+                answer.html(`You don't know anything about magic!`);
                 $(".playerAction").val("");
             }
         }    
@@ -932,7 +932,7 @@ function handlePlayerDecision() {
             }
         }
         else {
-            answer.html(`You don't know how to use magic!`);
+            answer.html(`You don't know anything about magic!`);
             $(".playerAction").val("");
         }
     }
