@@ -752,7 +752,7 @@ function handlePlayerDecision() {
             $(".diceRoll").html(`You roll ${diceRoll}`);
             $(".playerAction").val("");
             if (diceRoll > 10){
-                answer.html(`You set a trap and slowly move away, as ${enemy} approaches, it gets caught in the trap, you escape!!`);
+                answer.html(`You set a trap and slowly creep away, as ${enemy} approaches, gets caught in the trap!`);
                 $(".playerAction").val("");
                 setTimeout(function(){
                     task3();
@@ -779,7 +779,7 @@ function handlePlayerDecision() {
     console.log(`You rolled ${diceRoll}.`);
     let playerAnswer = $(".playerAction").val();
     console.log("combat running");
-    let unarmedCombatWords = ["hands","fist","fists","punch"];
+    let unarmedCombatWords = ["hands","fist","fists","punch","kick"];
 
     //Undead special check
     if (gamestate == "CombatInit" && playerAnswer == "sword" && enemy == "Undead") {
