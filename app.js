@@ -999,15 +999,19 @@ function CheckGameOver(stringToCheck) {
     }
 }
 
+function reLoad(){
+    setTimeout(function() {
+        location.reload();
+    }, 5000);
+}
+
 function combatGameOver() {
     mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/combatDefeat.jpeg')`;
     answer.html(`${enemy} has bested you and you have died. Game Over.`)
     $(".playerAction").val("");
     gameOverCounter = 0;
     // restart
-    setTimeout(function() {
-        location.reload();
-    }, 5000);
+    reLoad();
 }
 
 function sealExplosionGameOver() {
@@ -1015,9 +1019,7 @@ function sealExplosionGameOver() {
     answer.html(`Your fumbling with the magical seal unleashed an arcane explosion and you are disintigrated. Game Over.`)
     $(".playerAction").val("").off('keydown').focus(); // Ensuring the event listener is removed
     // restart
-    setTimeout(function() {
-        location.reload();
-    }, 5000);
+    reLoad();
 }
 
 function sealGameOver() {
@@ -1025,7 +1027,5 @@ function sealGameOver() {
     answer.html(`The seals have locked. You are trapped in eternal void forever. Game Over.`);
     $(".playerAction").val("").off('keydown').focus(); // Ensuring the event listener is removed
     // restart
-    setTimeout(function() {
-        location.reload();
-    }, 5000);
+    reLoad();
 }
