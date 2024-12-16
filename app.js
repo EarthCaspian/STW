@@ -634,12 +634,13 @@ function task3(callback) {
                     sequence += (sequence ? ',' : '') + playerAnswer;
 
                     if (sequence === "right,left,up") {
-                        answer.html(`The veil of shadow breaks, you find yourself teleported to a wizard's tower.`);
-                        mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wizTower.jpeg')`;
                         $(".playerAction").val("").off('keydown', handleSealSequence).focus(); // Remove the event listener
+                        answer.html(`The seals dissipate and darkness wanes away...`); 
+                        HowsItGoing.html(``);
+                        $(".actionCheck").html("");
                         setTimeout(function(){
                             callback();
-                        }, 3000);
+                        }, 2000);
                     } else {
                         answer.html(`The sequence seems to be incorrect.`);
                         $(".playerAction").val("").focus();
@@ -662,6 +663,30 @@ function task3(callback) {
     $(".playerAction").off('keydown').on('keydown', handlePlayerAction).focus();
 }
 
+// Function to enter the wizard's sanctum and present the final puzzle
+function enterSanctum() {
+    gamestate = "Sanctum";
+    console.log("task 4 running.");
+    answer.html(`The veil of shadow breaks, you find yourself teleported to a wizard's tower.`);
+    $(".actionCheck").html("What do you do?");
+    mainTextbox.style.backgroundImage = `linear-gradient(90deg,rgba(41, 37, 37, 0.774),rgba(114, 74, 14, 0.103)), url('img/wizTower.jpeg')`;
+    // Placeholder puzzle: simple riddle
+    let riddle = "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?";
+    let CorrectAnswer = "echo"; // Placeholder answer
+    setTimeout(function(){
+        let playerResponse = prompt(riddle); // For simplicity, using prompt for input
+    
+        if (playerResponse && playerResponse.toLowerCase() === CorrectAnswer) {
+        answer.html(`Correct! You notice the magic in the air is lifted and the doors open...`);
+        gamestate = "FinalBoss"; // Final boss battle sequence
+        } else {
+        answer.html(`The answer is incorrect. The sanctum's magic repels you.`);
+        // Optionally, handle retry or other consequences
+        }
+    },2000)
+    
+  }
+  
 
 //click event handler
 $("#playerDecisionButton").click(function (e) {
@@ -693,6 +718,8 @@ function handlePlayerDecision() {
       gamestate = "CombatOver";
       task3(function() {
         gamestate = "OutofSeal";
+        answer.html("");
+        enterSanctum();
     });
     });
     if (playerAnswer == "attack") {
@@ -770,6 +797,10 @@ function handlePlayerDecision() {
         }
     }
   } 
+//   else if (gamestate == "OutofSeal") {
+//     answer.html("");
+//     enterSanctum();
+//   }
   }
 
 //function for the combat sequence
